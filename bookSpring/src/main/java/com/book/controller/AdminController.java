@@ -33,7 +33,7 @@ public class AdminController {
 			
 			switch(CompareResult) {
 				case 1:
-					return ("AdminHomepage");
+					return ("redirect:/admin/home");
 				case 2:
 					model.addAttribute("errorMes", "Your account is not admin");
 					return ("AdminLoginFail");
@@ -52,6 +52,11 @@ public class AdminController {
 		}
 		
         
+    }
+	
+	@RequestMapping(value = "/admin/home")
+    public String showHome() {
+        return ("AdminHomepage");
     }
 	
 	private int compareAccountWithDB(String name, String pass) {

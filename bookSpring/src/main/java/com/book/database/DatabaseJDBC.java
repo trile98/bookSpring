@@ -6,8 +6,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-
-
 public class DatabaseJDBC {
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplateObject;
@@ -17,9 +15,8 @@ public class DatabaseJDBC {
 	}
 	
 	public DatabaseJDBC() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("/bookSpring/src/main/webapp/WEB-INF/beans.xml");
 		
-		dataSource = (DataSource) context.getBean("datasource");
+		dataSource = new DataSourceConfig().dataSource();
 		setDataSource(dataSource);
 	}
 	
