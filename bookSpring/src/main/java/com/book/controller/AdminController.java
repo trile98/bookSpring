@@ -1,7 +1,10 @@
 package com.book.controller;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.book.database.AccountMapper;
 import com.book.database.DatabaseJDBC;
+import com.book.database.OrderMapper;
 import com.book.model.Account;
+import com.book.model.Order;
  
 @Controller
 public class AdminController {
@@ -58,6 +63,57 @@ public class AdminController {
     public String showHome() {
         return ("AdminHomepage");
     }
+	
+	@RequestMapping(value = "/admin/order")
+    public ModelAndView showOrder() {
+		DatabaseJDBC jdbc = new DatabaseJDBC();
+		JdbcTemplate template = jdbc.getTemplate();
+		
+		String sql = "Select * from Orders";
+		List <Order> orders = template.query(sql, new OrderMapper());
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("AdminOrderView");
+		mv.addObject("OrderList",orders);
+		
+        return mv;
+    }
+	
+	@RequestMapping(value = "/admin/order/addNew")
+    public ModelAndView showAddOrder() {
+		DatabaseJDBC jdbc = new DatabaseJDBC();
+		JdbcTemplate template = jdbc.getTemplate();
+		
+		String currentDate = java.time.LocalDate.now().toString();
+		
+		String sql = "Select ID from Users";
+		List<Integer> IDs =template.query(sql,new RowMapper<Integer>(){
+										            public Integer mapRow(ResultSet rs, int rowNum) 
+										                    throws SQLException {
+										return (Integer)rs.getInt("ID");
+										}
+										});
+		
+		ModelAndView mv = new ModelAndView("AdminOrderAddNew","command",new Order());
+		mv.addObject("curDate", currentDate);
+		mv.addObject("IdList",IDs);
+		
+        return mv;
+    }
+	
+	@RequestMapping(value = "/order/submit-new", method = { RequestMethod.POST,RequestMethod.GET})
+    public String ProcessNewOrder(@ModelAttribute("SpringWeb")Order order,ModelMap model) {
+
+		int UserId= order.getUserID();
+//------------------------>		here
+		
+		return ("redirect:/admin/home");
+		
+        
+    }
+	
+	
 	
 	private int compareAccountWithDB(String name, String pass) {
 		DatabaseJDBC jdbc = new DatabaseJDBC();
