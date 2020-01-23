@@ -1,6 +1,8 @@
 package com.book.controller;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,7 +29,7 @@ public class AdminController {
     }
 	
 	 
-	@RequestMapping(value = "/signin", method = { RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value = "/admin/signin", method = { RequestMethod.POST,RequestMethod.GET})
     public String ProcessLogin(@ModelAttribute("SpringWeb")Account acc,ModelMap model) {
 
 		String username= acc.getUsername();
@@ -72,9 +75,17 @@ public class AdminController {
 		String sql = "Select * from Orders";
 		List <Order> orders = template.query(sql, new OrderMapper());
 		
-		ModelAndView mv = new ModelAndView();
+		String IDsql = "Select ID from Users";
+		List<Integer> IDs =template.query(IDsql,new RowMapper<Integer>(){
+										            public Integer mapRow(ResultSet rs, int rowNum) 
+										                    throws SQLException {
+										return (Integer)rs.getInt("ID");
+										}
+										});
 		
-		mv.setViewName("AdminOrderView");
+		ModelAndView mv = new ModelAndView("AdminOrderView","command",new Order());
+		
+		mv.addObject("IdList",IDs);
 		mv.addObject("OrderList",orders);
 		
         return mv;
@@ -102,17 +113,64 @@ public class AdminController {
         return mv;
     }
 	
-	@RequestMapping(value = "/order/submit-new", method = { RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value = "/admin/order/submit-new", method = { RequestMethod.POST,RequestMethod.GET})
     public String ProcessNewOrder(@ModelAttribute("SpringWeb")Order order,ModelMap model) {
 
 		int UserId= order.getUserID();
-//------------------------>		here
+		Date CreateDate = order.getCreateDate();
 		
-		return ("redirect:/admin/home");
+		
+		
+		DatabaseJDBC jdbc = new DatabaseJDBC();
+		JdbcTemplate template = jdbc.getTemplate();
+		
+		String sql = "Insert into Orders values ("+UserId+",'"+CreateDate.toString()+"',0)";
+		template.execute(sql);
+		
+		
+		
+		return ("redirect:/admin/order");
 		
         
     }
 	
+	@RequestMapping(value = "/admin/order/delete/{orderId}", method = { RequestMethod.POST,RequestMethod.GET})
+    public String DeleteOrder(@PathVariable(value="orderId") String orderId, ModelMap model) {
+		try {
+		DatabaseJDBC jdbc = new DatabaseJDBC();
+		JdbcTemplate template = jdbc.getTemplate();
+		
+		String sql = "Delete from Orders where ID ="+orderId;
+		template.execute(sql);
+		
+		model.addAttribute("ResultOrderMes", "Deleted Successfully");
+		return ("redirect:/admin/order");
+		}
+		catch(Exception e) {
+			model.addAttribute("ResultOrderMes", "Fail to delete. Error: "+e.getMessage());
+			return ("redirect:/admin/order");
+		}
+        
+    }
+	
+	@RequestMapping(value = "/admin/order/edit/{orderId}", method = { RequestMethod.POST,RequestMethod.GET})
+    public String EditOrder(@PathVariable(value="orderId") String orderId, @ModelAttribute("SpringWeb")Order order,ModelMap model) {
+		try {
+		DatabaseJDBC jdbc = new DatabaseJDBC();
+		JdbcTemplate template = jdbc.getTemplate();
+		
+		String sql = "Update Orders set UserId = "+ order.getUserID() +", Total = "+order.getTotal()+"where ID ="+orderId;
+		template.execute(sql);
+		
+		model.addAttribute("ResultOrderMes", "Deleted Successfully");
+		return ("redirect:/admin/order");
+		}
+		catch(Exception e) {
+			model.addAttribute("ResultOrderMes", "Fail to delete. Error: "+e.getMessage());
+			return ("redirect:/admin/order");
+		}
+        
+    }
 	
 	
 	private int compareAccountWithDB(String name, String pass) {

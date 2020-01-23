@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -61,6 +62,14 @@
     <script src="<c:url value="/resourcesAdmin/js/vendor/modernizr-2.8.3.min.js" />"></script>
 </head>
 <body>
+
+<!-- Error Message -->
+<c:if test="${not empty ResultOrderMes}">
+	<h1>this is a message here</h1>
+	<script>alert(${ResultOrderMes})</script>
+</c:if>
+<!-- Error Message End -->
+
 <!-- Start Header Top Area -->
     <div class="header-top-area">
         <div class="container">
@@ -266,7 +275,7 @@
 	                                        <td>${order.getUserID() }</td>
 	                                        <td>${order.getCreateDate() }</td>
 	                                        <td>${order.getTotal() }</td>
-	                                        <td><a><i class="fas fa-edit"></i></a> <a><i class="fas fa-trash-alt"></i></a>
+	                                        <td><a class="modal-Edit" data-id="${order.getID() }" data-userid="${order.getUserID() }" data-createdate = "${order.getCreateDate() }" data-total ="${order.getTotal() }" data-toggle="modal" href="#" data-target ="#EditOrderModal"><i class="fas fa-edit"></i>Edit</a> | <a data-id ="${order.getID() }" data-toggle="modal" href="#" data-target ="#OrderDeleteModal" class="modal-Delete"><i class="fas fa-trash-alt"></i>Delete</a>
 	                                    </tr>
                                     </c:forEach>
                                 </tbody>
@@ -279,6 +288,115 @@
         </div>
     </div>
     <!-- Data Table area End-->
+
+<!-- Edit Modal Start -->
+	<div class="modal animated rubberBand" id="EditOrderModal" role="dialog">
+           <div class="modal-dialog modals-default">
+               <div class="modal-content">
+                   <form:form id="EditOrderForm" action="/bookSpring/admin/order/edit/" method="POST">
+	                   <div class="modal-header">
+	                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                   </div>
+	                   <div class="modal-body">
+	                       	<div class="container">
+								<div class="row">
+					                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					                    <div class="form-example-wrap mg-t-30">
+					                        <div class="form-example-int form-horizental">
+					                            <div class="form-group">
+					                                <div class="row">
+					                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+					                                        <label class="hrzn-fm">User Id</label>
+					                                    </div>
+					                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+					                                        <div class="nk-int-st">
+					                                            <div class="bootstrap-select fm-cmp-mg">
+					                                            
+								                                    <form:select id="EditUserIdInput"  path="UserID" class="selectpicker">
+									                                    <c:forEach var="userId" items="${IdList }">
+									                                    	
+									                                    		<option>${userId }</option>
+								                                    		
+								                                    		
+									                                   	</c:forEach>
+																	</form:select>
+								                                </div>
+					                                        </div>
+					                                    </div>
+					                                </div>
+					                            </div>
+					                        </div>
+					                        <div class="form-example-int form-horizental mg-t-15">
+					                            <div class="form-group">
+					                                <div class="row">
+					                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+					                                        <label class="hrzn-fm">Create date</label>
+					                                    </div>
+					                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+					                                        <div class="nk-int-st">
+					                                            
+											                    <form:input path="CreateDate" id="EditCreateDateInput" readonly="true" type='text' class="form-control" value="" />
+													                
+					                                        </div>
+					                                    </div>
+					                                </div>
+					                            </div>
+					                        </div>
+					                        
+					                        <div class="form-example-int form-horizental mg-t-15">
+					                            <div class="form-group">
+					                                <div class="row">
+					                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+					                                        <label class="hrzn-fm">Total</label>
+					                                    </div>
+					                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+					                                        <div class="nk-int-st">
+					                                            
+											                    <form:input path="Total" id="EditTotalInput" type='text' class="form-control" value="" />
+													                
+					                                        </div>
+					                                    </div>
+					                                </div>
+					                            </div>
+					                        </div>
+					                        
+					                </div>
+					               </div>
+							</div>
+	                   </div>
+	                   <div class="modal-footer">
+	                       <button type="submit" class="btn btn-default" >Save changes</button>
+	                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                   </div>
+               		</form:form>
+               </div>
+           </div>
+       </div>
+<!-- Edit Modal End -->
+
+<!-- Delete Modal Start -->
+	<div class="modal animated rubberBand" id="OrderDeleteModal" role="dialog">
+           <div class="modal-dialog modals-default">
+               <div class="modal-content">
+                   
+	                   <div class="modal-header">
+	                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                   </div>
+	                   <div class="modal-body">
+	                       	Do you want to delete this record???
+	                   </div>
+	                   <div class="modal-footer">
+		                   <form:form id="OrderDeleteForm" action="/bookSpring/admin/order/delete/" method="POST">
+		                       <button type="submit" class="btn btn-default">Yes</button>
+		                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		                   </form:form>
+	                   </div>
+               		
+               </div>
+           </div>
+       </div>
+<!-- Delete Modal End -->
+
 
 
 <!-- Start Footer area-->
@@ -367,5 +485,11 @@
 	<!-- tawk chat JS
 		============================================ -->
     <script src="<c:url value="/resourcesAdmin/js/tawk-chat.js" />"></script>
+    <!-- own JS
+		============================================ -->
+    <c:url value="/resourcesAdmin/js/AdminOrder.js" var="myUrl" />
+    <script type="text/javascript" src="${myUrl }"></script>
+    
+    
 </body>
 </html>

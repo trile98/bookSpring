@@ -54,7 +54,9 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="<c:url value="/resourcesAdmin/js/vendor/modernizr-2.8.3.min.js" />"></script>
-	
+	<!-- bootstrap select CSS
+		============================================ -->
+    <link rel="stylesheet" href="<c:url value="/resourcesAdmin/css/bootstrap-select/bootstrap-select.css" />">
 <body>
 
 <!-- Start Header Top Area -->
@@ -162,6 +164,8 @@
                             </div>
                         </div>
                         
+                        
+                        
                         <div class="form-example-int mg-t-15">
                             <div class="row">
                                 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
@@ -260,9 +264,9 @@
     <!-- main JS
 		============================================ -->
     <script src="<c:url value="/resourcesAdmin/js/main.js" />"></script>
-	<!-- tawk chat JS
+	
+	<!-- bootstrap select JS
 		============================================ -->
-    <script src="<c:url value="/resourcesAdmin/js/tawk-chat.js" />"></script>
-
+    <script src="<c:url value="/resourcesAdmin/js/bootstrap-select/bootstrap-select.js"/>"></script>
 </body>
 </html>

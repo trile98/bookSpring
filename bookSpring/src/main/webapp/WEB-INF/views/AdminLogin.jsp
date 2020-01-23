@@ -60,7 +60,7 @@
     <div class="login-content">
         <!-- Login -->
         <div class="nk-block toggled" id="l-login">
-            <form:form id="LoginForm" class ="nk-form" action="/bookSpring/signin" method="POST">
+            <form:form id="LoginForm" class ="nk-form" action="/bookSpring/admin/signin" method="POST">
 	            
 	                <div class="input-group">
 	                    <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
