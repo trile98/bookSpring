@@ -25,6 +25,7 @@
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resourcesAdmin/**"
 		location="/resources/Admin/" cache-period="31556926" />
-
+		<mvc:resources mapping="/resourcesHome/**"
+		location="/resources/Home/" cache-period="31556926" />
 
 </beans>
