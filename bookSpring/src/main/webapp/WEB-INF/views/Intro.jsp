@@ -1,7 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/master site.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
@@ -10,138 +11,143 @@
 	<meta name="keywords" content="Book Store Template, Free CSS Template, CSS Website Layout, CSS, HTML" />
 	<meta name="description" content="Book Store Template, Free CSS Template, Download CSS Website" />
 	
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="<c:url value="resourcesHome/css/quake.slider.css"/>" rel="stylesheet" type="text/css">
-	<link href="<c:url value="resourcesHome/skins/plain/quake.skin.css"/>" rel="stylesheet" type="text/css">
-	<link href="<c:url value="resourcesHome/templatemo_style.css"/>" rel="stylesheet" type="text/css">
-	<script src="<c:url value="resourcesHome/js/jquery.min.js"/>" type="text/javascript"></script>
-    <script src="<c:url value="resourcesHome/js/quake.slider-min.js"/>" type="text/javascript"></script>
-    <script type="text/javascript">
-$(document).ready(function () {
-            $('.quake-slider').quake({
-                thumbnails: true,
-                animationSpeed: 500,
-                applyEffectsRandomly: true,
-                navPlacement: 'inside',
-                navAlwaysVisible: true,
-                captionOpacity: '0.3',
-                captionsSetup: [
-                                 {
-                                     "orientation": "top",
-                                     "slides": [0, 1],
-                                     "callback": captionAnimateCallback
-                                 },
-                                  {
-                                      "orientation": "left",
-                                      "slides": [2, 3],
-                                      "callback": captionAnimationCallback1
-                                  }
-                                  ,
-                                  {
-                                      "orientation": "bottom",
-                                      "slides": [4, 5],
-                                      "callback": captionAnimateCallback
-                                  }
-                                  ,
-                                  {
-                                      "orientation": "right",
-                                      "slides": [6, 7],
-                                      "callback": captionAnimationCallback1
-                                  }
-                                ]
-            });
-            function captionAnimateCallback(captionWrapper, captionContainer, orientation) {
-                captionWrapper.css({ left: '-990px' }).stop(true, true).animate({ left: 0 }, 500);
-                captionContainer.css({ left: '-990px' }).stop(true, true).animate({ left: 0 }, 500);
-            }
-            function captionAnimationCallback1(captionWrapper, captionContainer, orientation) {
-                captionWrapper.css({ top: '-330px' }).stop(true, true).animate({ top: 0 }, 500);
-                captionContainer.css({ top: '-330px' }).stop(true, true).animate({ top: 0 }, 500);
-            }
-        });
-function MM_swapImgRestore() { //v3.0
-  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
-}
-function MM_preloadImages() { //v3.0
-  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
-    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
-    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
-}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link href="<c:url value="resourcesHome/templatemo_style.css"/>" rel="stylesheet" type="text/css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.9.0/css/mdb.min.css" rel="stylesheet">
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
 
-function MM_findObj(n, d) { //v4.01
-  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
-    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
-  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
-  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
-  if(!x && d.getElementById) x=d.getElementById(n); return x;
-}
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 
-function MM_swapImage() { //v3.0
-  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
-   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
-}
-    </script>
-    
-   <meta charset='utf-8'>
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link href="styles.css" rel="stylesheet" type="text/css">
-   <script src="script.js"></script>
+ <style>
+  /* Note: Try to remove the following lines to see the effect of CSS positioning */
+  .affix {
+    top: 0;
+    width: 100%;
+    z-index: 9999 !important;
+  }
+
+  .affix + .container-fluid {
+    padding-top: 70px;
+  }
+  </style>
 </head>
-<body onLoad="MM_preloadImages('images/book-banner-4.jpg')">
-<div id="templatemo_container"><img src="<c:url value="resourcesHome/images/banner1.jpg"/>" width="960" height="162"></div>
-<div id="templatemo_container" >
-		<div class="search-container">
-		<form action="#" method="post">
-		  <input type="text" name="search" id="search" placeholder="Search..">
-		</form>
-		</div>
-		<a href="#"><img alt="Giỏ hàng" style="height: 35px;float: right;margin-right: 10px"  src="<c:url value="resourcesHome/images/buttonShop.png"/>"></a>
-		<input type="submit"  class="nut" value="SignIn" >
-		<input type="submit" class="nut" value="SignUp">
+  
+<body style="background-color: #4B4743">
+<div class="container" style="background-color: #1C1C1B">
 
-</div>
-<div id="templatemo_container">
-  <div id="cssmenu">
-   <ul>
-   <li><a href="Home" class="current">Trang chủ</a></li>
-            <li><a href="Intro">Giới thiệu</a></li>
-            <li><a href="Books">Sách</a></li>            
-            <li><a href="sachmoi.html">Sách mới</a></li>  
-            <li><a href="trogiup.html">Trợ giúp</a></li> 
-            <li><a href="lienhe.html">Liên hệ</a></li>	</ul>
-    </div> <!-- end of menu -->
+    <!-- Control the column width, and how they should appear on different devices -->
+    <div class="row" style="height: 240px">
+      <div class="col-sm-12" style="padding: 0px 10px;height: 240px"><img alt="Logo" src="resourcesHome/images/banner1.jpg"style="width:100%;height: 100%"></div>
 
-    <!-- Quake Image Slider -->
-<div class="quake-slider" id="templatemo_header">
-        <div class="quake-slider-images"> 
-        	<a target="_blank" href="javascript:"> <img src="<c:url value="resourcesHome/images/nature/image1.jpg"/>" alt="" /></a>
-        	<a target="_blank" href="javascript:"> <img src="<c:url value="resourcesHome/images/nature/image2.jpg"/>" alt="" /> </a>
-        	<a target="_blank" href="javascript:"> <img src="<c:url value="resourcesHome/images/nature/image3.jpg"/>" alt="" /> </a>
-        	<a target="_blank" href="javascript:"> <img src="<c:url value="resourcesHome/images/nature/image4.jpg"/>" alt="" /> </a>
-        	<a target="_blank" href="javascript:"> <img src="<c:url value="resourcesHome/images/nature/image5.jpg"/>" alt="" /> </a>
+    </div>
+
+    
+    <div class="row">
+			<div class="col-sm-12 col-md-12" style="padding: 0px 10px">
+				<nav class="navbar navbar-light bg-dark" style="background-color: #1C1C1B">
+				  <form class="form-inline" >
+				    <input class="form-control mr-sm-2" type="search" style="width: 300px" placeholder="Search" aria-label="Search">
+				    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				  </form>
+			
+				<button class="btn peach-gradient" style="float: right">Sign In</button>
+				<button class="btn purple-gradient" style="float: right">Sign Up</button>
+				<button class="btn blue-gradient" style="float: right"><i class="fas fa-shopping-cart"></i></button>
+			</div>
+
+    </div>
+
+
+
+    <div class="row ">
+		<div class="col-sm-12 col-md-12 position-relative " data-spy="affix" data-offset-top="197">
+		  <div >
+			  <div id="cssmenu">
+			   <ul>
+			   <li><a href="Home" class="current">Trang chủ</a></li>
+			            <li><a href="Intro">Giới thiệu</a></li>
+			            <li><a href="Books">Sách</a></li>            
+			            <li><a href="sachmoi.html">Sách mới</a></li>  
+			            <li><a href="Contact">Liên hệ</a></li>	</ul>
+			    </div> <!-- end of menu -->
+
 		</div>
-</div>      
-   <!-- /Quake Image Slider -->     
-<div id="templatemo_content">
-    	
-    <div id="templatemo_content_left">
-        	<div class="templatemo_content_left_section">
-            	<h1>Danh mục sách</h1>
+    </div>
+    </div>
+    <div class="row">
+    	<div class="col-sm-12 col-md-12">
+		   <div id="myCarousel" class="carousel carousel-fade slide border" data-ride="carousel">
+		   <ol class="carousel-indicators">
+		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		    <li data-target="#myCarousel" data-slide-to="1"></li>
+		    <li data-target="#myCarousel" data-slide-to="2"></li>
+		    <li data-target="#myCarousel" data-slide-to="3"></li>
+		    <li data-target="#myCarousel" data-slide-to="4"></li>
+		  </ol>
+			   <div class="carousel-inner">
+			      <div class="carousel-item active" style="">
+			         <a target="_blank" href="javascript:"><img src="<c:url value="resourcesHome/images/nature/image1.jpg"/>" alt="hình 1" style="width: 100%" /> </a>
+			      </div>
+			      <div class="carousel-item">
+			         <a target="_blank" href="javascript:"><img src="<c:url value="resourcesHome/images/nature/image2.jpg"/>" alt="hình 2" style="width: 100%"/> </a>
+			      </div>
+			      <div class="carousel-item">
+			         <a target="_blank" href="javascript:"><img src="<c:url value="resourcesHome/images/nature/image3.jpg"/>" alt="hình 3" style="width: 100%"/> </a>
+			      </div>
+			      <div class="carousel-item">
+			         <a target="_blank" href="javascript:"><img src="<c:url value="resourcesHome/images/nature/image4.jpg"/>" alt="hình 4" style="width: 100%"/> </a>
+			      </div>
+			      <div class="carousel-item">
+			         <a target="_blank" href="javascript:"><img src="<c:url value="resourcesHome/images/nature/image5.jpg"/>" alt="hình 5" style="width: 100%"/> </a>
+			      </div>
+			   </div>
+			   <!-- Controls -->
+			   <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+			   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			   <span class="sr-only">Previous</span>
+			   </a>
+			   <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+			   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			   <span class="sr-only">Next</span>
+			   </a>
+			</div>
+
+		</div>
+
+    </div>
+  	
+  	<div class="row" style="padding:10px 0px;">
+  		<div class="col-sm-4 col-md-4 mucluc" style="padding:0px 20px;font-size: 10px;font-family: cursive;">
+  			<div style="background: black;padding-left:10px">
+  			<h1 style="font-size: 14px;padding-top: 10px;color: white">Danh mục sách</h1>
                 <ul>
-                    <li><a href="kinhte.html">Sách Kinh tế</a></li>
-                    <li><a href="vanhoctrongnuoc.html">Sách Văn Học Trong Nước</a></li>
-                    <li><a href="vanhocnuocngoai.html">Sách Văn Học Nước Ngoài</a></li>
-                    <li><a href="thuongthuc.html">Sách Thường Thức - Đời Sống</a></li>
-                    <li><a href="thieunhi.html">Sách Thiếu Nhi</a></li>
-                    <li><a href="tinhoc-ngoaingu.html">Sách Tin Học - Ngoại Ngữ</a></li>
-                    <li><a href="giaokhoa-giaotrinh.html">Sách Giáo Khoa - Giáo Trình</a></li>
-                    <li><a href="chuyennganh.html">Sách Chuyên Ngành</a></li>
-                    <li><a href="tapchi.html">Tạp Chí</a></li>
+                    <li><a href="kinhte.html">Sách kinh tế</a></li>
+                    <li><a href="vanhoctrongnuoc.html">Sách văn học trong nước</a></li>
+                    <li><a href="vanhocnuocngoai.html">Sách văn học nước ngoài</a></li>
+                    <li><a href="thuongthuc.html">Sách thường thức - Đời sống</a></li>
+                    <li><a href="thieunhi.html">Sách thiếu nhi</a></li>
+                    <li><a href="tinhoc-ngoaingu.html">Sách tin học - Ngoại ngữ</a></li>
+                    <li><a href="giaokhoa-giaotrinh.html">Sách giáo khoa - Giáo trình</a></li>
+                    <li><a href="chuyennganh.html">Sách chuyên ngành</a></li>
+                    <li><a href="tapchi.html">Tạp chí</a></li>
             	</ul>
-            </div>
-			<div class="templatemo_content_left_section">
-            	<h1>Bestsellers</h1>
+            	<hr style="border-top: 1px dotted #d2691e;">
+            <h1 style="font-size: 14px;color: white">Bestsellers</h1>
                 <ul>
                     <li><a href="#">Trò chơi vương quyền</a></li>
                     <li><a href="#">Harry Potter (7 tập)</a></li>
@@ -154,53 +160,164 @@ function MM_swapImage() { //v3.0
                     <li><a href="#">Cuộc sống không giới hạn</a></li>
                     <li><a href="#">Tôi tài giỏi, bạn cũng thế</a></li>
             	</ul>
-            </div>
-    </div> <!-- end of content left -->
-        
-        <!-- InstanceBeginEditable name="content" -->
-        <div id="templatemo_content_right">
-        	<p>&nbsp;</p>
-        	<p>CTbookstore là công ty hàng đầu trong lĩnh vực kinh doanh sách trực tuyến tại Việt Nam với website là <a href="http://www.vinabook.com/">www.CTbookstore.com</a> hoạt động từ năm 2014</p>
-        	<p>Mục tiêu của chúng tôi là luôn mở rộng thị trường sách online cùng với đà phát triển của công nghệ thông tin. Để thực hiện mục tiêu đó, chúng tôi đã có những nhận thức đúng đắn về vai trò 
-        	của nguồn nhân lực trong xây dựng và phát triển kinh doanh. Chúng tôi đã và đang không ngừng hoàn thiện hơn nữa môi trường làm việc với các trang thiết bị hiện đại, cung cách làm việc hiệu quả 
-        	để ngày càng hoàn thiện việc phục vụ khách hàng.</p>
-        	  Đội ngũ <strong>CTbookstore</strong>: <br>
-        	  - Trẻ, năng động, sáng tạo cùng với phong cách làm việc chuyên nghiệp hy vọng sẽ đáp ứng được sự mong muốn của khách hàng, đặc biệt trong việc mua sách trực tuyến.<br>
-        	<br>
-        	  Sứ mệnh <strong>CTbookstore</strong>:<br>
-        	  - Phục vụ khách hàng nhanh nhất và tốt nhất.<br>
-        	  - Không ngừng duy trì, phát triển và mở rộng phạm vi phục vụ sách đến mọi miền đất nước không phân biệt vị trí địa lý <br>
-        	<br>
-        	  Phong cách <strong>CTbookstore</strong>: <br>
-        	  - Với đội ngũ nhân viên chuyên nghiệp, chúng tôi phục vụ khách hàng từ 8 sáng đến 9 tối (Thứ 2 đến Chủ Nhật hàng tuần). <br>
-        	<br>
-       	    Dịch vụ <strong>CTbookstore</strong>: <br>
-        	  - Đặt hàng trực tuyến, giao hàng và thu tiền tận nơi trong và ngoài nước. <br>
-        	  - CTbook có mặt trên khắp nẻo đường, qua kênh phân phối của bưu chính Việt Nam. <br>
-        	  - Đội ngũ nhân viên giao hàng trong thành phố thân thiện và tận tâm. <br>
-        	 
-			<div class="cleaner_with_width">
-				&nbsp;
-			</div>
-        	<a href="#"><img src="<c:url value="resourcesHome/images/sach1.jpg"/>" alt="ads" width="671" height="192" /></a> 
+            	<hr style="border-top: 1px dotted #d2691e;">
+            	<br>
+  		</div>
+  		</div>
+  		
+  		
+					<div class="col-sm-8" style="color: white;font-family: tahoma">
+			  				<p>CTbookstore là công ty hàng đầu trong lĩnh vực kinh doanh sách trực tuyến tại Việt Nam với website là <a href="http://www.vinabook.com/">www.CTbookstore.com</a> hoạt động từ năm 2014</p>
+			        	<p>Mục tiêu của chúng tôi là luôn mở rộng thị trường sách online cùng với đà phát triển của công nghệ thông tin. Để thực hiện mục tiêu đó, chúng tôi đã có những nhận thức đúng đắn về vai trò 
+			        	của nguồn nhân lực trong xây dựng và phát triển kinh doanh. Chúng tôi đã và đang không ngừng hoàn thiện hơn nữa môi trường làm việc với các trang thiết bị hiện đại, cung cách làm việc hiệu quả 
+			        	để ngày càng hoàn thiện việc phục vụ khách hàng.</p>
+			        	  Đội ngũ <strong>CTbookstore</strong>: <br>
+			        	  - Trẻ, năng động, sáng tạo cùng với phong cách làm việc chuyên nghiệp hy vọng sẽ đáp ứng được sự mong muốn của khách hàng, đặc biệt trong việc mua sách trực tuyến.<br>
+			        	<br>
+			        	  Sứ mệnh <strong>CTbookstore</strong>:<br>
+			        	  - Phục vụ khách hàng nhanh nhất và tốt nhất.<br>
+			        	  - Không ngừng duy trì, phát triển và mở rộng phạm vi phục vụ sách đến mọi miền đất nước không phân biệt vị trí địa lý <br>
+			        	<br>
+			        	  Phong cách <strong>CTbookstore</strong>: <br>
+			        	  - Với đội ngũ nhân viên chuyên nghiệp, chúng tôi phục vụ khách hàng từ 8 sáng đến 9 tối (Thứ 2 đến Chủ Nhật hàng tuần). <br>
+			        	<br>
+			       	    Dịch vụ <strong>CTbookstore</strong>: <br>
+			        	  - Đặt hàng trực tuyến, giao hàng và thu tiền tận nơi trong và ngoài nước. <br>
+			        	  - CTbook có mặt trên khắp nẻo đường, qua kênh phân phối của bưu chính Việt Nam. <br>
+			        	  - Đội ngũ nhân viên giao hàng trong thành phố thân thiện và tận tâm. <br>
+			  		</div>
+  		</div>
+  		
+  	
+  
+	<div class="row pb-3">
+		<div class="col-sm-4 col-md-4" style="padding: 22% 0px 0px 10%">
+			<img src="<c:url value="resourcesHome/images/logo/nxbgd.jpg"/>" width="20%" height="width*20%">
+	   		<img src="<c:url value="resourcesHome/images/logo/nxbtre.jpg"/>" width="20%" height="width*20%">
+	   		<img src="<c:url value="resourcesHome/images/logo/nxbtt.jpg"/>" width="20%" height="width*20%">
 		</div>
+		<div class="col-sm-8 col-md-8 ads" >
+			<a href=#><img src="<c:url value="resourcesHome/images/sach1.jpg"/>" alt="ads"  /></a>
+		</div>
+	</div>
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color lighten-3 pt-4" >
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+
+        <!-- Content -->
+        <h5 class="font-weight-bold text-uppercase mb-4">Welcome</h5>
+        <p style="font-family: tahoma">Hãy đọc một giờ mỗi ngày về lĩnh vực bạn đã lựa chọn. Điều này tương đương khoảng một cuốn sách mỗi tuần, năm mươi cuốn sách mỗi năm, và sẽ đảm bảo cho thành công của bạn.</p>
+        <i  style="font-family: Times, "Times New Roman", serif;">Đây là một trang web cung cấp các loại sách mới nhất và thường xuyên ưu đãi dành cho khách hàng </i>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mb-4">About</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <p>
+              <a href="#!">Trang chủ</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="#!">Liên hệ</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="#!">Sách mới</a>
+            </p>
+          </li>
+          
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+        <!-- Contact details -->
+        <h5 class="font-weight-bold text-uppercase mb-4">Address</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <p>
+              <i class="fas fa-home mr-3"></i>Scetpa building, 19A Cộng Hòa, Street, Tân Bình, Hồ Chí Minh</p>
+          </li>
+          <li>
+            <p>
+              <i class="fas fa-envelope mr-3"></i> lenguyenthanh102@gmail.com</p>
+          </li>
+          <li>
+            <p>
+              <i class="fas fa-phone mr-3"></i> +84 946 046 279</p>
+          </li>
+          <li>
+            <p>
+              <i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
+
+        <!-- Social buttons -->
+        <h5 class="font-weight-bold text-uppercase mb-4">Follow Us</h5>
+
+        <!-- Facebook -->
+        <a type="button" class="btn-floating btn-fb">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+       
+        <!-- Google +-->
+        <a type="button" class="btn-floating btn-gplus">
+          <i class="fab fa-google-plus-g"></i>
+        </a>
         
-<!-- InstanceEndEditable --></div> 
-    <!-- end of content right -->
-    
-   		<div  style="padding:10px 0 10px 30px;clear: both;">&nbsp;
-	   	<img src="<c:url value="resourcesHome/images/logo/nxbgd.jpg"/>" width="57" height="55">
-	   	<img src="<c:url value="resourcesHome/images/logo/nxbtre.jpg"/>" width="57" height="55">
-	   	<img src="<c:url value="resourcesHome/images/logo/nxbtt.jpg"/>" width="57" height="55">
-   	</div>
-    
-    <div id="templatemo_footer">
- <a href="Home">Trang chủ</a> | <a href="#">Tìm kiếm</a> | <a href="sach.html">Sách</a> | <a href="sachmoi.html">Sách mới</a> | <a href="#">FAQs</a> | <a href="lienhe.html">Liên hệ</a><br />
-        Copyright © 2014 <a href="#"><strong>CT Book store</strong></a> | Designed by <a href="http://www.templatemo.com" target="_parent" title="free css templates">CT software</a>	
-    </div> 
-    <!-- end of footer -->
-     
-</div> <!-- end of content -->
- </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+
+
+<!-- Footer -->
 </body>
-<!-- InstanceEnd --></html>
+</html>
