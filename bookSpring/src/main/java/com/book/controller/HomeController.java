@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,24 +26,24 @@ import com.book.model.Product;
 @Controller
 public class HomeController {
 
-	@RequestMapping(path = "/Home")
+	@RequestMapping(path = "/")
 	public String showHomepage(ModelMap modelMap) {
 		List<Product> list = GetListProduct();
 		int tongsopage = list.size() / 10;
 		modelMap.addAttribute("listProduct", list);
 		modelMap.addAttribute("page", tongsopage);
+		return "index";
+	}
+	@RequestMapping(path = "/Home/{trang}",method = RequestMethod.GET)
+	public String showHomepagenum(@PathVariable("trang")int trang,ModelMap modelMap) {
+		List<Product> list = GetListProduct();
+		int tongsopage = list.size() / 10;
+		modelMap.addAttribute("trang",trang);
+		modelMap.addAttribute("listProduct", list);
+		modelMap.addAttribute("page", tongsopage);
 		return "Home";
 	}
-
-	private List<Product> GetListProduct() {
-		DatabaseJDBC jdbc = new DatabaseJDBC();
-		JdbcTemplate template = jdbc.getTemplate();
-
-		String sql = "Select * from Product";
-		List<Product> list = template.query(sql, new ProductHomeMapper());
-		return list;
-
-	}
+	
 
 	@RequestMapping(path = "/Intro")
 	public String showIntropage() {
@@ -50,18 +51,23 @@ public class HomeController {
 		return "Intro";
 	}
 
-	@RequestMapping(path = "/Books")
-	public String showBookspage(ModelMap modelMap) {
+	@RequestMapping(path = "/Books/{trang}")
+	public String showBookspage(@PathVariable("trang")int trang,ModelMap modelMap) {
 		List<Product> list = GetListProduct();
-		int tongsopage = (list.size() - 1) / 10;
+		int tongsopage = list.size() / 10;
+		modelMap.addAttribute("trang",trang);
 		modelMap.addAttribute("listProduct", list);
-		if (tongsopage % 10 == 0) {
-			modelMap.addAttribute("page", tongsopage);
-		} else {
-			modelMap.addAttribute("page", tongsopage + 1);
-		}
-
+		modelMap.addAttribute("page", tongsopage);
 		return "Books";
+	}
+	@RequestMapping(path = "/NewBooks/{trang}")
+	public String showNewBookspage(@PathVariable("trang")int trang,ModelMap modelMap) {
+		List<Product> list = GetListProduct();
+		int tongsopage = list.size() / 10;
+		modelMap.addAttribute("trang",trang);
+		modelMap.addAttribute("listProduct", list);
+		modelMap.addAttribute("page", tongsopage);
+		return "NewBooks";
 	}
 
 	@RequestMapping(path = "/Contact")
@@ -78,6 +84,22 @@ public class HomeController {
 		return "Detail";
 	}
 
+	
+	@RequestMapping(path = "/Order", method = RequestMethod.POST)
+	public String showOrderpage(@RequestParam int ID, ModelMap modelMap) {
+		modelMap.addAttribute("ID", ID);
+
+		return "Order";
+	}
+	private List<Product> GetListProduct() {
+		DatabaseJDBC jdbc = new DatabaseJDBC();
+		JdbcTemplate template = jdbc.getTemplate();
+
+		String sql = "Select * from Product";
+		List<Product> list = template.query(sql, new ProductHomeMapper());
+		return list;
+
+	}
 	private Product GetInfoProduct() {
 		DatabaseJDBC jdbc = new DatabaseJDBC();
 		JdbcTemplate template = jdbc.getTemplate();
@@ -89,11 +111,5 @@ public class HomeController {
 
 		return p;
 
-	}
-	@RequestMapping(path = "/Order", method = RequestMethod.POST)
-	public String showOrderpage(@RequestParam int ID, ModelMap modelMap) {
-		modelMap.addAttribute("ID", ID);
-
-		return "Order";
 	}
 }

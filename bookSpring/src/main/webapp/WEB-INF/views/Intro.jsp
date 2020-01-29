@@ -33,35 +33,23 @@
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 
- <style>
-  /* Note: Try to remove the following lines to see the effect of CSS positioning */
-  .affix {
-    top: 0;
-    width: 100%;
-    z-index: 9999 !important;
-  }
-
-  .affix + .container-fluid {
-    padding-top: 70px;
-  }
-  </style>
 </head>
   
 <body style="background-color: #4B4743">
-<div class="container" style="background-color: #1C1C1B">
+<div class="container "  style="background-color: #1C1C1B">
 
     <!-- Control the column width, and how they should appear on different devices -->
     <div class="row" style="height: 240px">
-      <div class="col-sm-12" style="padding: 0px 10px;height: 240px"><img alt="Logo" src="resourcesHome/images/banner1.jpg"style="width:100%;height: 100%"></div>
+      <div class="col-sm-12" style="padding: 0px 14px;height: 240px"><img alt="Logo" src="resourcesHome/images/banner1.jpg"style="width:100%;height: 100%"></div>
 
     </div>
 
     
     <div class="row">
-			<div class="col-sm-12 col-md-12" style="padding: 0px 10px">
-				<nav class="navbar navbar-light bg-dark" style="background-color: #1C1C1B">
+			<div class="col-sm-12 col-md-12" style="padding: 0px 14px">
+				<nav class="navbar navbar-dark bg-dark" style="background-color: #1C1C1B">
 				  <form class="form-inline" >
-				    <input class="form-control mr-sm-2" type="search" style="width: 300px" placeholder="Search" aria-label="Search">
+				    <input class="form-control mr-sm-2" type="search" name="Search" style="width: 300px" placeholder="Search" aria-label="Search">
 				    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 				  </form>
 			
@@ -75,16 +63,17 @@
 
 
     <div class="row ">
-		<div class="col-sm-12 col-md-12 position-relative " data-spy="affix" data-offset-top="197">
+		<div class="col-sm-12 col-md-12 position-relative " >
 		  <div >
 			  <div id="cssmenu">
 			   <ul>
-			   <li><a href="Home" class="current">Trang chủ</a></li>
+			   <li><a href="Home/1" class="current">Trang chủ</a></li>
 			            <li><a href="Intro">Giới thiệu</a></li>
-			            <li><a href="Books">Sách</a></li>            
-			            <li><a href="sachmoi.html">Sách mới</a></li>  
+			            <li><a href="Books/1">Sách</a></li>            
+			            <li><a href="NewBooks/1">Sách mới</a></li>  
 			            <li><a href="Contact">Liên hệ</a></li>	</ul>
 			    </div> <!-- end of menu -->
+
 
 		</div>
     </div>

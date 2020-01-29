@@ -68,7 +68,7 @@
 				<br><br>
 				
 				
-					<a  class="btn btn-success" href="Home">Home <i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+					<a  class="btn btn-success" href="Home/1">Home <i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
 				
 			</form>
 		</div>

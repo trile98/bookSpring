@@ -156,13 +156,16 @@
 }
 
 
-.carousel-indicators li {
-  width: 10px;
-  height: 10px;
-  border-radius: 100%;
-  background-color: #3375de;
+.flex-container {
+  display: flex;
+
+  flex-wrap: wrap;
+  align-content: flex-start;
+
 }
-.carousel-control span.glyphicon {
-    color: red;
+
+.ads img {
+    width: 100%; // to maintain aspect ratio. You can use 100% if you don't care about that
+    height: 100%;
 }
 
