@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+	<meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Add New Order - Admin</title>
     <meta name="description" content="">
@@ -42,6 +42,9 @@
     <!-- Notika icon CSS
 		============================================ -->
     <link rel="stylesheet" href="<c:url value="/resourcesAdmin/css/notika-custom-icon.css" />">
+    <!-- Data Table JS
+		============================================ -->
+    <link rel="stylesheet" href="<c:url value="/resourcesAdmin/css/jquery.dataTables.min.css"/>">
     <!-- main CSS
 		============================================ -->
     <link rel="stylesheet" href="<c:url value="/resourcesAdmin/css/main.css" />">
@@ -57,6 +60,10 @@
 	<!-- bootstrap select CSS
 		============================================ -->
     <link rel="stylesheet" href="<c:url value="/resourcesAdmin/css/bootstrap-select/bootstrap-select.css" />">
+	<!-- own CSS
+		============================================ -->
+    <link rel="stylesheet" href="<c:url value="/resourcesAdmin/css/AdminOrderDetailCSS.css" />">
+	
 <body>
 
 <!-- Start Header Top Area -->
@@ -124,22 +131,22 @@
 	<div class="container">
 			<div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <form:form action="/bookSpring/admin/order/submit-new" method="POST">
+                <form:form action="/bookSpring/admin/order-detail/submit-new" method="POST">
                     <div class="form-example-wrap mg-t-30">
                         
                         <div class="form-example-int form-horizental">
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">User Id</label>
+                                        <label class="hrzn-fm">Order Id</label>
                                     </div>
                                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                         <div class="nk-int-st">
                                             <div class="bootstrap-select fm-cmp-mg">
                                             
-			                                    <form:select path="UserID" class="selectpicker">
-				                                    <c:forEach var="userId" items="${IdList }">
-				                                    	<option>${userId }</option>
+			                                    <form:select path="OrderId" class="selectpicker">
+				                                    <c:forEach var="orderId" items="${OrderIdList }">
+				                                    	<option>${orderId }</option>
 				                                   	</c:forEach>
 												</form:select>
 			                                </div>
@@ -148,31 +155,82 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="form-example-int form-horizental mg-t-15">
                             <div class="form-group">
                                 <div class="row">
+                                	<button class = "btn btn-group" data-toggle="modal" data-target ="#ProductModal">Choose Product</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-example-int form-horizental">
+                            <div class="form-group">
+                                <div class="row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Create date</label>
+                                        <label class="hrzn-fm">Product Id</label>
                                     </div>
                                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                         <div class="nk-int-st">
-                                            
-						                    <form:input path="CreateDate" readonly="true" type='text' class="form-control" value="${curDate }" />
-								                
+                                            <form:input type="text" id="ProductIdInput" path="ProductId" readonly="true" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
+                        <div class="form-example-int form-horizental">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Product Title</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                        <div class="nk-int-st">
+                                            <input type="text" id="ProductTitleInput" readonly class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
+                        <div class="form-example-int form-horizental">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Product Price</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                        <div class="nk-int-st">
+                                            <input type="text" id="ProductPriceInput" readonly class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-example-int form-horizental">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Product Quantity</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                        <div class="nk-int-st">
+                                            <form:input type="number" path="Quantity" class="form-control" min="1" value="1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
                         <div class="form-example-int mg-t-15">
                             <div class="row">
                                 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                 </div>
                                 <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                    <button class="btn btn-success notika-btn-success">Create Order</button>
+                                    <button type="submit" class="btn btn-success notika-btn-success">Create Order Detail</button>
                                 </div>
                             </div>
                         </div>
@@ -181,6 +239,8 @@
                 </div>
                </div>
 		</div>
+		
+	
 	
 <!-- Start Footer area-->
     <div class="footer-copyright-area">
@@ -196,6 +256,63 @@
         </div>
     </div>
     <!-- End Footer area-->
+    
+    <!-- Product Modal Start -->
+	<div class="modal animated rubberBand" id="ProductModal" role="dialog">
+           <div class="modal-dialog modals-default">
+               <div class="modal-content">
+	                   <div class="modal-header">
+	                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                   </div>
+	                   <div class="modal-body">
+                     		<!-- Data Table area Start-->
+						    <div class="data-table-area">
+						        <div class="container">
+						            <div class="row">
+						                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						                    <div class="data-table-list">
+						               
+						                        <div class="table-responsive">
+						                            <table id="data-table-basic" class="table table-striped">
+						                                <thead>
+						                                    <tr>
+						                                    	<th></th>
+						                                        <th>ID</th>
+						                                        <th>Title</th>
+						                                        <th>Price</th>
+						                                    </tr>
+						                                </thead>
+						                                <tbody>
+							                                <c:forEach var="Orderproduct" items="${OrderProductList }">
+							                                    <tr>
+							                                    	<td><input type="radio" name="productInOrder" data-id="${Orderproduct.getID() }" data-title="${Orderproduct.getTitle() }" data-price="${Orderproduct.getPrice() }"/></td>
+							                                        <td>${Orderproduct.getID() }</td>
+							                                        <td>${Orderproduct.getTitle() }</td>
+							                                        <td>${Orderproduct.getPrice() }</td>
+							                                        <td></td>
+						                                       </tr>
+						                                    </c:forEach>
+						                                </tbody>
+						                             
+						                            </table>
+						                        </div>
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+						    </div>
+						    <!-- Data Table area End-->
+					                
+	                   </div>
+	                   <div class="modal-footer">
+	                       <button id="chooseProductBtn" type="button" class="btn btn-default" data-dismiss="modal">Choose this product</button>
+	                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                   </div>
+               </div>
+           </div>
+       </div>
+<!-- Product Modal End -->
+    
     <!-- jquery
 		============================================ -->
     <script src="<c:url value="/resourcesAdmin/js/vendor/jquery-1.12.4.min.js" />"></script>
@@ -248,10 +365,6 @@
     <script src="<c:url value="/resourcesAdmin/js/knob/jquery.knob.js" />"></script>
     <script src="<c:url value="/resourcesAdmin/js/knob/jquery.appear.js" />"></script>
     <script src="<c:url value="/resourcesAdmin/js/knob/knob-active.js" />"></script>
-    <!--  wave JS
-		============================================ -->
-    <script src="<c:url value="/resourcesAdmin/js/wave/waves.min.js" />"></script>
-    <script src="<c:url value="/resourcesAdmin/js/wave/wave-active.js" />"></script>
     <!--  Chat JS
 		============================================ -->
 	<script src="<c:url value="/resourcesAdmin/js/chat/moment.min.js" />"></script>
@@ -259,15 +372,30 @@
     <!--  todo JS
 		============================================ -->
     <script src="<c:url value="/resourcesAdmin/js/todo/jquery.todo.js" />"></script>
+    <!--  wave JS
+		============================================ -->
+    <script src="<c:url value="/resourcesAdmin/js/wave/waves.min.js" />"></script>
+    <script src="<c:url value="/resourcesAdmin/js/wave/wave-active.js" />"></script>
     <!-- plugins JS
 		============================================ -->
     <script src="<c:url value="/resourcesAdmin/js/plugins.js" />"></script>
+    <!-- Data Table JS
+		============================================ -->
+    <script src="<c:url value="/resourcesAdmin/js/data-table/jquery.dataTables.min.js"/>"></script>
+    <script src="<c:url value="/resourcesAdmin/js/data-table/data-table-act.js"/>"></script>
     <!-- main JS
 		============================================ -->
     <script src="<c:url value="/resourcesAdmin/js/main.js" />"></script>
-	
+    <!-- tawk chat JS
+		============================================ -->
+    <script src="<c:url value="/resourcesAdmin/js/tawk-chat.js"/>"></script>
+    
+    
 	<!-- bootstrap select JS
 		============================================ -->
     <script src="<c:url value="/resourcesAdmin/js/bootstrap-select/bootstrap-select.js"/>"></script>
+    <!-- own JS
+		============================================ -->
+    <script src="<c:url value="/resourcesAdmin/js/AdminOrderDetailAddNew.js"/>"></script>
 </body>
 </html>

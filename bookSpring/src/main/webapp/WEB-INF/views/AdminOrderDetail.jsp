@@ -60,6 +60,13 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="<c:url value="/resourcesAdmin/js/vendor/modernizr-2.8.3.min.js" />"></script>
+	<!-- own CSS
+		============================================ -->
+    <link rel="stylesheet" href="<c:url value="/resourcesAdmin/css/AdminOrderDetailCSS.css" />">
+	<!-- bootstrap select CSS
+		============================================ -->
+    <link rel="stylesheet" href="<c:url value="/resourcesAdmin/css/bootstrap-select/bootstrap-select.css" />">
+		
 </head>
 <body>
 
@@ -110,9 +117,9 @@
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                         <li ><a href="/bookSpring/admin/home"><i class="notika-icon notika-house"></i> Home</a>
                         </li>
-                        <li class="active"><a  href="/bookSpring/admin/order"> "Order" Table</a>
+                        <li><a  href="/bookSpring/admin/order"> "Order" Table</a>
                         </li>
-                        <li><a  href="/bookSpring/admin/order-detail"> "Order Detail" Table</a>
+                        <li class="active"><a  href="/bookSpring/admin/order-detail"> "Order Detail" Table</a>
                         </li>
                         <li><a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> Charts</a>
                         </li>
@@ -140,30 +147,30 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="data-table-list">
                         <div class="basic-tb-hd">
-                            <h2>Order</h2>
+                            <h2>Order Detail</h2>
                             
                         </div>
                         <div>
-                        	<a href="/bookSpring/admin/order/addNew" class="btn btn-success notika-btn-success waves-effect" >Add New</a>
+                        	<a href="/bookSpring/admin/order-detail/addNew" class="btn btn-success notika-btn-success waves-effect" >Add New</a>
                         </div>
                         <div class="table-responsive">
                             <table id="data-table-basic" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>UserID</th>
-                                        <th>CreateDate</th>
-                                        <th>Total</th>
+                                        <th>OrderId</th>
+                                        <th>ProductId</th>
+                                        <th>Quantity</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-	                                <c:forEach var="order" items="${OrderList }">
+	                                <c:forEach var="orderDetail" items="${OrderDetailList }">
 	                                    <tr>
-	                                        <td>${order.getID() }</td>
-	                                        <td>${order.getUserID() }</td>
-	                                        <td>${order.getCreateDate() }</td>
-	                                        <td>${order.getTotal() }</td>
-	                                        <td><a class="modal-Edit" data-id="${order.getID() }" data-userid="${order.getUserID() }" data-createdate = "${order.getCreateDate() }" data-total ="${order.getTotal() }" data-toggle="modal" href="#" data-target ="#EditOrderModal"><i class="fas fa-edit"></i>Edit</a> | <a data-id ="${order.getID() }" data-toggle="modal" href="#" data-target ="#OrderDeleteModal" class="modal-Delete"><i class="fas fa-trash-alt"></i>Delete</a>
+	                                        <td>${orderDetail.getID() }</td>
+	                                        <td>${orderDetail.getOrderId() }</td>
+	                                        <td>${orderDetail.getProductId() }</td>
+	                                        <td>${orderDetail.getQuantity() }</td>
+	                                        <td><a class="modal-Edit" data-id="${orderDetail.getID() }" data-orderid="${orderDetail.getOrderId() }" data-productId = "${orderDetail.getProductId() }" data-quantity ="${orderDetail.getQuantity() }" data-toggle="modal" href="#" data-target ="#EditOrderModal"><i class="fas fa-edit"></i>Edit</a> | <a data-id ="${orderDetail.getID() }" data-toggle="modal" href="#" data-target ="#OrderDeleteModal" class="modal-Delete"><i class="fas fa-trash-alt"></i>Delete</a>
 	                                    </tr>
                                     </c:forEach>
                                 </tbody>
@@ -181,7 +188,7 @@
 	<div class="modal animated rubberBand" id="EditOrderModal" role="dialog">
            <div class="modal-dialog modals-default">
                <div class="modal-content">
-                   <form:form id="EditOrderForm" action="/bookSpring/admin/order/edit/" method="POST">
+                   <form:form id="EditOrderForm" action="/bookSpring/admin/order-detail/edit/" method="POST">
 	                   <div class="modal-header">
 	                       <button type="button" class="close" data-dismiss="modal">&times;</button>
 	                   </div>
@@ -189,23 +196,22 @@
 	                       	<div class="container">
 								<div class="row">
 					                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										                   
 					                    <div class="form-example-wrap mg-t-30">
+                        
 					                        <div class="form-example-int form-horizental">
 					                            <div class="form-group">
 					                                <div class="row">
 					                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-					                                        <label class="hrzn-fm">User Id</label>
+					                                        <label class="hrzn-fm">Order Id</label>
 					                                    </div>
 					                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
 					                                        <div class="nk-int-st">
 					                                            <div class="bootstrap-select fm-cmp-mg">
 					                                            
-								                                    <form:select id="EditUserIdInput"  path="UserID" class="selectpicker">
-									                                    <c:forEach var="userId" items="${IdList }">
-									                                    	
-									                                    		<option>${userId }</option>
-								                                    		
-								                                    		
+								                                    <form:select path="OrderId" class="selectpicker OrderIdSelect">
+									                                    <c:forEach var="orderId" items="${OrderIdList }">
+									                                    	<option class="orderIdSelect ${orderId }" >${orderId }</option>
 									                                   	</c:forEach>
 																	</form:select>
 								                                </div>
@@ -214,45 +220,66 @@
 					                                </div>
 					                            </div>
 					                        </div>
-					                        <div class="form-example-int form-horizental mg-t-15">
+					                       
+					                        <div class="form-example-int form-horizental">
 					                            <div class="form-group">
 					                                <div class="row">
 					                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-					                                        <label class="hrzn-fm">Create date</label>
+					                                        <label class="hrzn-fm">Product Id</label>
 					                                    </div>
 					                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
 					                                        <div class="nk-int-st">
-					                                            
-											                    <form:input path="CreateDate" id="EditCreateDateInput" readonly="true" type='text' class="form-control" value="" />
-													                
+					                                            <form:input type="text" id="EditODProductId" path="ProductId" readonly="true" class="form-control"/>
 					                                        </div>
 					                                    </div>
 					                                </div>
 					                            </div>
 					                        </div>
 					                        
-					                        <div class="form-example-int form-horizental mg-t-15">
+					                        <div class="form-example-int form-horizental">
 					                            <div class="form-group">
 					                                <div class="row">
 					                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-					                                        <label class="hrzn-fm">Total</label>
+					                                        <label class="hrzn-fm">Product Title</label>
 					                                    </div>
 					                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
 					                                        <div class="nk-int-st">
-					                                            
-											                    <form:input path="Total" id="EditTotalInput" type='text' class="form-control" value="" />
-													                
+					                                            <div class="bootstrap-select fm-cmp-mg">
+								                                    <select class="selectpicker productSelect" data-live-search="true">
+								                                    	 <c:forEach var="Orderproduct" items="${OrderProductList }">
+																			<option class="${Orderproduct.getID() }" data-Pid="${Orderproduct.getID() }">${Orderproduct.getID() }) ${Orderproduct.getTitle() }</option>
+																		</c:forEach>
+																	</select>
+								                                </div>
 					                                        </div>
 					                                    </div>
 					                                </div>
 					                            </div>
 					                        </div>
 					                        
+					                        <div class="form-example-int form-horizental">
+					                            <div class="form-group">
+					                                <div class="row">
+					                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+					                                        <label class="hrzn-fm">Product Quantity</label>
+					                                    </div>
+					                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+					                                        <div class="nk-int-st">
+					                                            <form:input id="EditODQuantity" type="number" path="Quantity" class="form-control" min="1" value="1"/>
+					                                        </div>
+					                                    </div>
+					                                </div>
+					                            </div>
+					                        </div>
+					                        
+					                        
+					                    </div>  
+					                    
 					                </div>
 					               </div>
 							</div>
 	                   </div>
-	                   </div>
+	                  
 	                   <div class="modal-footer">
 	                       <button type="submit" class="btn btn-default" >Save changes</button>
 	                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -275,7 +302,7 @@
 	                       	Do you want to delete this record???
 	                   </div>
 	                   <div class="modal-footer">
-		                   <form:form id="OrderDeleteForm" action="/bookSpring/admin/order/delete/" method="POST">
+		                   <form:form id="OrderDeleteForm" action="/bookSpring/admin/order-detail/delete/" method="POST">
 		                       <button type="submit" class="btn btn-default">Yes</button>
 		                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		                   </form:form>
@@ -376,8 +403,11 @@
     <script src="<c:url value="/resourcesAdmin/js/tawk-chat.js" />"></script>
     <!-- own JS
 		============================================ -->
-    <c:url value="/resourcesAdmin/js/AdminOrder.js" var="myUrl" />
+    <c:url value="/resourcesAdmin/js/AdminOrderDetail.js" var="myUrl" />
     <script type="text/javascript" src="${myUrl }"></script>
+    <!-- bootstrap select JS
+		============================================ -->
+    <script src="<c:url value="/resourcesAdmin/js/bootstrap-select/bootstrap-select.js"/>"></script>
     
     
 </body>
