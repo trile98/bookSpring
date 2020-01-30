@@ -75,7 +75,7 @@
         </div>
     </div>
     <!-- End Header Top Area -->
-    <!-- Mobile Menu start -->
+     <!-- Mobile Menu start -->
     <div class="mobile-menu-area">
         <div class="container">
             <div class="row">
@@ -91,6 +91,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     <!-- Mobile Menu end -->
     <!-- Main Menu area start-->
@@ -121,7 +122,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <!-- Main Menu area End-->
     <!-- Start Status area -->
     <div class="notika-status-area">
