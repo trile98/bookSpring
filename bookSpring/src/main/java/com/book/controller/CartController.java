@@ -56,19 +56,19 @@ public class CartController{
 //Update info User
 	@RequestMapping(value = "payment/add-payment", method = RequestMethod.POST)
     public String PaymentUpdateAccount(@RequestParam int ID, @RequestParam String Name,
-    		@RequestParam String Email, @RequestParam String PhoneNumber, @RequestParam String HomeAddress,ModelMap modelMap) {
+    		@RequestParam String Email, @RequestParam String PhoneNumber, @RequestParam String HomeAddress,ModelMap modelMap, HttpSession session) {
 		DatabaseJDBC jdbc = new DatabaseJDBC();
 		JdbcTemplate template = jdbc.getTemplate();
 		
 		String sql = "Update Users Set Name = '"+Name+"', Email = '"+Email+"', PhoneNumber ='"+PhoneNumber+"', HomeAddress = '"+HomeAddress+"'Where ID = "+ID ;
-	
-		template.execute(sql);
 		
+		template.execute(sql);
+		//remove session when finish payment
+		session.removeAttribute("giohang");
 		return ("redirect:/");	
     }
 	
 //Load product into Cart
-	
 	
 	
 	List<Product> giohangs = new ArrayList<Product>();
