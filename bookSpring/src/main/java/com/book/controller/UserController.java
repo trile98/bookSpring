@@ -89,11 +89,11 @@ public class UserController {
 			switch(CompareResult) {
 			case 1:
 			{
-				/*DatabaseJDBC jdbc = new DatabaseJDBC();
+				DatabaseJDBC jdbc = new DatabaseJDBC();
 				JdbcTemplate template = jdbc.getTemplate();
 				
-				String sql = "Insert into Users values ("+name+", "+homeAddress+", "+email+", "+phoneNumber+", "+username+", "+password+", 2)";
-				template.execute(sql);*/
+				String sql = "Insert into Users values ('"+name+"', '"+homeAddress+"', '"+email+"', '"+phoneNumber+"', '"+username+"', '"+password+"', 2)";
+				template.execute(sql);
 				
 				return ("redirect:/user/home");}
 				
