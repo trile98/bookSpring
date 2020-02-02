@@ -28,6 +28,9 @@
 	<mvc:resources mapping="/resourcesHome/**"
 		location="/resources/Home/" cache-period="31556926" />
 	
+	<mvc:resources mapping="/resourcesUser/**"
+		location="/resources/User/" cache-period="31556926" />
+	
 	<mvc:resources mapping="/resourcesCt/**"
 		location="/resources/Contact/" cache-period="31556926" />
 </beans>

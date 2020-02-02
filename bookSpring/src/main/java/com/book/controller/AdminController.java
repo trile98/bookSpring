@@ -17,13 +17,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.book.database.AccountMapper;
 import com.book.database.DatabaseJDBC;
-import com.book.database.OrderDetailMapper;
+
 import com.book.database.OrderMapper;
-import com.book.database.OrderProductMapper;
+
 import com.book.model.Account;
 import com.book.model.Order;
-import com.book.model.OrderDetail;
-import com.book.model.OrderProduct;
+//import com.book.database.OrderDetailMapper;
+//import com.book.database.OrderProductMapper;
+//import com.book.model.OrderDetail;
+//import com.book.model.OrderProduct;
  
 @Controller
 public class AdminController {
@@ -180,114 +182,114 @@ public class AdminController {
 	
 	
 //	-------------------Orderdetail
-	@RequestMapping(value = "/admin/order-detail")
-    public ModelAndView showOrderDetail() {
-		DatabaseJDBC jdbc = new DatabaseJDBC();
-		JdbcTemplate template = jdbc.getTemplate();
-		
-		String sql = "Select * from OrderDetail";
-		List <OrderDetail> ordersDetail = template.query(sql, new OrderDetailMapper());
-		
-		String sqlProduct = "Select ID, Title, Price from Product";
-		List<OrderProduct> orderP =template.query(sqlProduct,new OrderProductMapper());
-		
-		String sqlID = "Select ID from Orders";
-		List<Integer> IDs =template.query(sqlID,new RowMapper<Integer>(){
-										            public Integer mapRow(ResultSet rs, int rowNum) 
-										                    throws SQLException {
-										return (Integer)rs.getInt("ID");
-										}
-										});
-		
-		ModelAndView mv = new ModelAndView("AdminOrderDetail","command",new OrderDetail());
-		mv.addObject("OrderProductList", orderP);
-		mv.addObject("OrderIdList",IDs);
-		mv.addObject("OrderDetailList",ordersDetail);
-		
-        return mv;
-    }
-	
-	@RequestMapping(value = "/admin/order-detail/addNew")
-    public ModelAndView showAddOrderDetail() {
-		DatabaseJDBC jdbc = new DatabaseJDBC();
-		JdbcTemplate template = jdbc.getTemplate();
-		
-		String sql = "Select ID, Title, Price from Product";
-		List<OrderProduct> orderP =template.query(sql,new OrderProductMapper());
-		
-		String sqlID = "Select ID from Orders";
-		List<Integer> IDs =template.query(sqlID,new RowMapper<Integer>(){
-										            public Integer mapRow(ResultSet rs, int rowNum) 
-										                    throws SQLException {
-										return (Integer)rs.getInt("ID");
-										}
-										});
-		
-		ModelAndView mv = new ModelAndView("AdminOrderDetailAddNew","command",new OrderDetail());
-		mv.addObject("OrderProductList", orderP);
-		mv.addObject("OrderIdList",IDs);
-		
-        return mv;
-    }
-	
-	@RequestMapping(value = "/admin/order-detail/submit-new", method = { RequestMethod.POST,RequestMethod.GET})
-    public String ProcessNewOrderDetail(@ModelAttribute("SpringWeb")OrderDetail orderDetail,ModelMap model) {
-
-		int OrderId = orderDetail.getOrderId();
-		int ProductId = orderDetail.getProductId();
-		int Quantity = orderDetail.getQuantity();
-		
-		DatabaseJDBC jdbc = new DatabaseJDBC();
-		JdbcTemplate template = jdbc.getTemplate();
-		
-		String sql = "Insert into OrderDetail values ("+OrderId+","+ProductId+","+Quantity+")";
-		template.execute(sql);
-		
-		
-		
-		return ("redirect:/admin/order-detail");
-		
-        
-    }
-	
-	@RequestMapping(value = "/admin/order-detail/edit/{orderDetailId}", method = { RequestMethod.POST,RequestMethod.GET})
-    public String EditOrderDetail(@PathVariable(value="orderDetailId") String orderDetailId, @ModelAttribute("SpringWeb")OrderDetail orderDetail,ModelMap model) {
-		try {
-		DatabaseJDBC jdbc = new DatabaseJDBC();
-		JdbcTemplate template = jdbc.getTemplate();
-		
-		String sql = "Update OrderDetail set OrderId = "+ orderDetail.getOrderId() +", ProductId = "+orderDetail.getProductId() +", Quantity = "+orderDetail.getQuantity()+"where ID ="+orderDetailId;
-		template.execute(sql);
-		
-		model.addAttribute("ResultOrderMes", "Deleted Successfully");
-		return ("redirect:/admin/order-detail");
-		}
-		catch(Exception e) {
-			model.addAttribute("ResultOrderMes", "Fail to delete. Error: "+e.getMessage());
-			return ("redirect:/admin/order-detail");
-		}
-        
-    }
-	
-	@RequestMapping(value = "/admin/order-detail/delete/{orderDetailId}", method = { RequestMethod.POST,RequestMethod.GET})
-    public String DeleteOrderDetail(@PathVariable(value="orderDetailId") String orderDetailId, ModelMap model) {
-		try {
-		DatabaseJDBC jdbc = new DatabaseJDBC();
-		JdbcTemplate template = jdbc.getTemplate();
-		
-		String sql = "Delete from OrderDetail where ID ="+orderDetailId;
-		template.execute(sql);
-		
-		model.addAttribute("ResultOrderMes", "Deleted Successfully");
-		return ("redirect:/admin/order-detail");
-		}
-		catch(Exception e) {
-			model.addAttribute("ResultOrderMes", "Fail to delete. Error: "+e.getMessage());
-			return ("redirect:/admin/order-detail");
-		}
-        
-    }
-	
+//	@RequestMapping(value = "/admin/order-detail")
+//    public ModelAndView showOrderDetail() {
+//		DatabaseJDBC jdbc = new DatabaseJDBC();
+//		JdbcTemplate template = jdbc.getTemplate();
+//		
+//		String sql = "Select * from OrderDetail";
+//		List <OrderDetail> ordersDetail = template.query(sql, new OrderDetailMapper());
+//		
+//		String sqlProduct = "Select ID, Title, Price from Product";
+//		List<OrderProduct> orderP =template.query(sqlProduct,new OrderProductMapper());
+//		
+//		String sqlID = "Select ID from Orders";
+//		List<Integer> IDs =template.query(sqlID,new RowMapper<Integer>(){
+//										            public Integer mapRow(ResultSet rs, int rowNum) 
+//										                    throws SQLException {
+//										return (Integer)rs.getInt("ID");
+//										}
+//										});
+//		
+//		ModelAndView mv = new ModelAndView("AdminOrderDetail","command",new OrderDetail());
+//		mv.addObject("OrderProductList", orderP);
+//		mv.addObject("OrderIdList",IDs);
+//		mv.addObject("OrderDetailList",ordersDetail);
+//		
+//        return mv;
+//    }
+//	
+//	@RequestMapping(value = "/admin/order-detail/addNew")
+//    public ModelAndView showAddOrderDetail() {
+//		DatabaseJDBC jdbc = new DatabaseJDBC();
+//		JdbcTemplate template = jdbc.getTemplate();
+//		
+//		String sql = "Select ID, Title, Price from Product";
+//		List<OrderProduct> orderP =template.query(sql,new OrderProductMapper());
+//		
+//		String sqlID = "Select ID from Orders";
+//		List<Integer> IDs =template.query(sqlID,new RowMapper<Integer>(){
+//										            public Integer mapRow(ResultSet rs, int rowNum) 
+//										                    throws SQLException {
+//										return (Integer)rs.getInt("ID");
+//										}
+//										});
+//		
+//		ModelAndView mv = new ModelAndView("AdminOrderDetailAddNew","command",new OrderDetail());
+//		mv.addObject("OrderProductList", orderP);
+//		mv.addObject("OrderIdList",IDs);
+//		
+//        return mv;
+//    }
+//	
+//	@RequestMapping(value = "/admin/order-detail/submit-new", method = { RequestMethod.POST,RequestMethod.GET})
+//    public String ProcessNewOrderDetail(@ModelAttribute("SpringWeb")OrderDetail orderDetail,ModelMap model) {
+//
+//		int OrderId = orderDetail.getOrderId();
+//		int ProductId = orderDetail.getProductId();
+//		int Quantity = orderDetail.getQuantity();
+//		
+//		DatabaseJDBC jdbc = new DatabaseJDBC();
+//		JdbcTemplate template = jdbc.getTemplate();
+//		
+//		String sql = "Insert into OrderDetail values ("+OrderId+","+ProductId+","+Quantity+")";
+//		template.execute(sql);
+//		
+//		
+//		
+//		return ("redirect:/admin/order-detail");
+//		
+//        
+//    }
+//	
+//	@RequestMapping(value = "/admin/order-detail/edit/{orderDetailId}", method = { RequestMethod.POST,RequestMethod.GET})
+//    public String EditOrderDetail(@PathVariable(value="orderDetailId") String orderDetailId, @ModelAttribute("SpringWeb")OrderDetail orderDetail,ModelMap model) {
+//		try {
+//		DatabaseJDBC jdbc = new DatabaseJDBC();
+//		JdbcTemplate template = jdbc.getTemplate();
+//		
+//		String sql = "Update OrderDetail set OrderId = "+ orderDetail.getOrderId() +", ProductId = "+orderDetail.getProductId() +", Quantity = "+orderDetail.getQuantity()+"where ID ="+orderDetailId;
+//		template.execute(sql);
+//		
+//		model.addAttribute("ResultOrderMes", "Deleted Successfully");
+//		return ("redirect:/admin/order-detail");
+//		}
+//		catch(Exception e) {
+//			model.addAttribute("ResultOrderMes", "Fail to delete. Error: "+e.getMessage());
+//			return ("redirect:/admin/order-detail");
+//		}
+//        
+//    }
+//	
+//	@RequestMapping(value = "/admin/order-detail/delete/{orderDetailId}", method = { RequestMethod.POST,RequestMethod.GET})
+//    public String DeleteOrderDetail(@PathVariable(value="orderDetailId") String orderDetailId, ModelMap model) {
+//		try {
+//		DatabaseJDBC jdbc = new DatabaseJDBC();
+//		JdbcTemplate template = jdbc.getTemplate();
+//		
+//		String sql = "Delete from OrderDetail where ID ="+orderDetailId;
+//		template.execute(sql);
+//		
+//		model.addAttribute("ResultOrderMes", "Deleted Successfully");
+//		return ("redirect:/admin/order-detail");
+//		}
+//		catch(Exception e) {
+//			model.addAttribute("ResultOrderMes", "Fail to delete. Error: "+e.getMessage());
+//			return ("redirect:/admin/order-detail");
+//		}
+//        
+//    }
+//	
 	
 	
 	private int compareAccountWithDB(String name, String pass) {

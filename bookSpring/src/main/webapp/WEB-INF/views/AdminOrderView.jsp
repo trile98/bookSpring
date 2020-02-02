@@ -60,6 +60,9 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="<c:url value="/resourcesAdmin/js/vendor/modernizr-2.8.3.min.js" />"></script>
+    <!-- Data Table JS
+		============================================ -->
+    <link rel="stylesheet" href="<c:url value="/resourcesAdmin/css/jquery.dataTables.min.css"/>">
 </head>
 <body>
 
@@ -101,6 +104,7 @@
                 </div>
             </div>
         </div>
+        </div>
     <!-- Mobile Menu end -->
     <!-- Main Menu area start-->
     <div class="main-menu-area mg-tb-40">
@@ -130,7 +134,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <!-- Main Menu area End-->
 
  <!-- Data Table area Start-->
@@ -141,10 +144,7 @@
                     <div class="data-table-list">
                         <div class="basic-tb-hd">
                             <h2>Order</h2>
-                            
-                        </div>
-                        <div>
-                        	<a href="/bookSpring/admin/order/addNew" class="btn btn-success notika-btn-success waves-effect" >Add New</a>
+                            <a href="/bookSpring/admin/order/addNew" class="btn btn-success notika-btn-success waves-effect" >Add New</a>
                         </div>
                         <div class="table-responsive">
                             <table id="data-table-basic" class="table table-striped">
@@ -154,6 +154,7 @@
                                         <th>UserID</th>
                                         <th>CreateDate</th>
                                         <th>Total</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -167,7 +168,7 @@
 	                                    </tr>
                                     </c:forEach>
                                 </tbody>
-                             
+                             	<tfoot><tr></tr></tfoot>
                             </table>
                         </div>
                     </div>
@@ -374,6 +375,11 @@
 	<!-- tawk chat JS
 		============================================ -->
     <script src="<c:url value="/resourcesAdmin/js/tawk-chat.js" />"></script>
+    <!-- Data Table JS
+		============================================ -->
+    <script src="<c:url value="/resourcesAdmin/js/data-table/jquery.dataTables.min.js"/>"></script>
+    <script src="<c:url value="/resourcesAdmin/js/data-table/data-table-act.js"/>"></script>
+    
     <!-- own JS
 		============================================ -->
     <c:url value="/resourcesAdmin/js/AdminOrder.js" var="myUrl" />

@@ -97,6 +97,7 @@
                 </div>
             </div>
         </div>
+        </div>
     <!-- Mobile Menu end -->
     <!-- Main Menu area start-->
     <div class="main-menu-area mg-tb-40">
@@ -106,9 +107,9 @@
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                         <li ><a href="/bookSpring/admin/home"><i class="notika-icon notika-house"></i> Home</a>
                         </li>
-                        <li class="active"><a  href="/bookSpring/admin/order"> "Order" Table</a>
+                        <li><a  href="/bookSpring/admin/order"> "Order" Table</a>
                         </li>
-                        <li><a  href="/bookSpring/admin/order-detail"> "Order Detail" Table</a>
+                        <li class="active"><a  href="/bookSpring/admin/order-detail"> "Order Detail" Table</a>
                         </li>
                         <li><a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> Charts</a>
                         </li>
@@ -126,7 +127,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <!-- Main Menu area End-->
 	<div class="container">
 			<div class="row">
@@ -159,8 +159,11 @@
                         <div class="form-example-int form-horizental mg-t-15">
                             <div class="form-group">
                                 <div class="row">
-                                	<button class = "btn btn-group" data-toggle="modal" data-target ="#ProductModal">Choose Product</button>
-                                    
+                                	<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    </div>
+                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                        <a class = "btn btn-default notika-btn-default" role="button" data-toggle="modal" data-target ="#ProductModal">Choose Product</a>
+                                     </div>
                                 </div>
                             </div>
                         </div>
@@ -259,7 +262,7 @@
     
     <!-- Product Modal Start -->
 	<div class="modal animated rubberBand" id="ProductModal" role="dialog">
-           <div class="modal-dialog modals-default">
+           <div class="modal-dialog modal-large">
                <div class="modal-content">
 	                   <div class="modal-header">
 	                       <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -271,7 +274,9 @@
 						            <div class="row">
 						                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						                    <div class="data-table-list">
-						               
+						               			<div class="basic-tb-hd">
+						                            <h2>Products</h2>
+					                            </div>
 						                        <div class="table-responsive">
 						                            <table id="data-table-basic" class="table table-striped">
 						                                <thead>
@@ -289,11 +294,10 @@
 							                                        <td>${Orderproduct.getID() }</td>
 							                                        <td>${Orderproduct.getTitle() }</td>
 							                                        <td>${Orderproduct.getPrice() }</td>
-							                                        <td></td>
 						                                       </tr>
 						                                    </c:forEach>
 						                                </tbody>
-						                             
+						                             	<tfoot><tr></tr></tfoot>
 						                            </table>
 						                        </div>
 						                    </div>

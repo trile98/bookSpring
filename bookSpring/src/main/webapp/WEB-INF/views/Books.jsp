@@ -36,90 +36,12 @@
 
 <script type="text/javascript" src="<c:url value="../resourcesHome/js/custom.js"/>"></script>
 
-  
+
 <body style="background-color: #4B4743">
+
+<jsp:include page="preHeaderHome.jsp" /> 
+
 <div class="container" style="background-color: #1C1C1B">
-
-    <!-- Control the column width, and how they should appear on different devices -->
-    <div class="row" style="height: 240px">
-      <div class="col-sm-12" style="padding: 0px 14px;height: 240px"><img alt="Logo" src="../resourcesHome/images/banner1.jpg"style="width:100%;height: 100%"></div>
-
-    </div>
-
-    
-    <div class="row">
-			<div class="col-sm-12 col-md-12" style="padding: 0px 14px">
-				<nav class="navbar navbar-light bg-dark" style="background-color: #1C1C1B">
-				  <form class="form-inline" >
-				    <input class="form-control mr-sm-2" type="search" style="width: 300px" placeholder="Search" aria-label="Search">
-				    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				  </form>
-			
-				<button class="btn peach-gradient" style="float: right">Sign In</button>
-				<button class="btn purple-gradient" style="float: right">Sign Up</button>
-				<button class="btn blue-gradient" style="float: right"><i class="fas fa-shopping-cart"></i></button>
-			</div>
-
-    </div>
-
-
-
-    <div class="row ">
-		<div class="col-sm-12 col-md-12 position-relative " data-spy="affix" data-offset-top="197">
-		  <div >
-			  <div id="cssmenu">
-			   <ul>
-			   <li><a href="../Home/1" class="current">Trang chủ</a></li>
-			            <li><a href="../Intro">Giới thiệu</a></li>
-			            <li><a href="../Books/1">Sách</a></li>            
-			            <li><a href="../NewBooks/1">Sách mới</a></li>  
-			            <li><a href="../Contact">Liên hệ</a></li>	</ul>
-			    </div> <!-- end of menu -->
-
-		</div>
-    </div>
-    </div>
-    <div class="row">
-    	<div class="col-sm-12 col-md-12">
-		   <div id="myCarousel" class="carousel carousel-fade slide border" data-ride="carousel">
-		   <ol class="carousel-indicators">
-		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-		    <li data-target="#myCarousel" data-slide-to="1"></li>
-		    <li data-target="#myCarousel" data-slide-to="2"></li>
-		    <li data-target="#myCarousel" data-slide-to="3"></li>
-		    <li data-target="#myCarousel" data-slide-to="4"></li>
-		  </ol>
-			   <div class="carousel-inner">
-			      <div class="carousel-item active" style="">
-			         <a target="_blank" href="javascript:"><img src="<c:url value="../resourcesHome/images/nature/image1.jpg"/>" alt="hình 1" style="width: 100%" /> </a>
-			      </div>
-			      <div class="carousel-item">
-			         <a target="_blank" href="javascript:"><img src="<c:url value="../resourcesHome/images/nature/image2.jpg"/>" alt="hình 2" style="width: 100%"/> </a>
-			      </div>
-			      <div class="carousel-item">
-			         <a target="_blank" href="javascript:"><img src="<c:url value="../resourcesHome/images/nature/image3.jpg"/>" alt="hình 3" style="width: 100%"/> </a>
-			      </div>
-			      <div class="carousel-item">
-			         <a target="_blank" href="javascript:"><img src="<c:url value="../resourcesHome/images/nature/image4.jpg"/>" alt="hình 4" style="width: 100%"/> </a>
-			      </div>
-			      <div class="carousel-item">
-			         <a target="_blank" href="javascript:"><img src="<c:url value="../resourcesHome/images/nature/image5.jpg"/>" alt="hình 5" style="width: 100%"/> </a>
-			      </div>
-			   </div>
-			   <!-- Controls -->
-			   <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-			   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			   <span class="sr-only">Previous</span>
-			   </a>
-			   <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-			   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			   <span class="sr-only">Next</span>
-			   </a>
-			</div>
-
-		</div>
-
-    </div>
   	
   	<div class="row" style="padding:10px 0px;">
   		<div class="col-sm-4 col-md-4 mucluc" style="padding:0px 20px;font-size: 10px;font-family: cursive;">
@@ -246,6 +168,7 @@
   		</div>
   		
   	</div>
+  	<c:if test="${page>1}">
   	<div class="row">
   	<div class="col-sm-4"></div>
   	<div class="col-sm-8 ">
@@ -254,11 +177,11 @@
   			<c:choose>
 		     	<c:when test = "${i<9}">
 		            <li class=" page-item p-2 my-flex-item">
-		            <a class="paging-item page-link mr-3 bg-info text-white" href="${i}">${i}</a>
+		            <a class="paging-item page-link mr-3 bg-info text-white" href="${i}?Search=${Search}">${i}</a>
 		            </li>
 		         </c:when>
 		         <c:otherwise>
-		            <li class="page-item  p-2 my-flex-item"><a class="paging-item page-link mr-2 bg-info text-white" href="${i}">${i}</a></li>
+		            <li class="page-item  p-2 my-flex-item"><a class="paging-item page-link mr-2 bg-info text-white" href="${i}?Search=${Search}">${i}</a></li>
 		         </c:otherwise>
 		      </c:choose>
 		    
@@ -266,6 +189,7 @@
 		  </ul>
   	</div>
   	</div>
+  	</c:if>
 	<div class="row pb-3">
 		<div class="col-sm-4 col-md-4" style="padding: 22% 0px 0px 10%">
 			<img src="<c:url value="../resourcesHome/images/logo/nxbgd.jpg"/>" width="20%" height="width*20%">
@@ -280,123 +204,11 @@
 
 
 
-<!-- Footer -->
-<footer class="page-footer font-small mdb-color lighten-3 pt-4" >
-
-  <!-- Footer Links -->
-  <div class="container text-center text-md-left">
-
-    <!-- Grid row -->
-    <div class="row">
-
-      <!-- Grid column -->
-      <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
-
-        <!-- Content -->
-        <h5 class="font-weight-bold text-uppercase mb-4">Welcome</h5>
-        <p style="font-family: tahoma">Hãy đọc một giờ mỗi ngày về lĩnh vực bạn đã lựa chọn. Điều này tương đương khoảng một cuốn sách mỗi tuần, năm mươi cuốn sách mỗi năm, và sẽ đảm bảo cho thành công của bạn.</p>
-        <i  style="font-family: Times, "Times New Roman", serif;">Đây là một trang web cung cấp các loại sách mới nhất và thường xuyên ưu đãi dành cho khách hàng </i>
-
-      </div>
-      <!-- Grid column -->
-
-      <hr class="clearfix w-100 d-md-none">
-
-      <!-- Grid column -->
-      <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
-
-        <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mb-4">About</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <p>
-              <a href="#!">Trang chủ</a>
-            </p>
-          </li>
-          <li>
-            <p>
-              <a href="#!">Liên hệ</a>
-            </p>
-          </li>
-          <li>
-            <p>
-              <a href="#!">Sách mới</a>
-            </p>
-          </li>
-          
-        </ul>
-
-      </div>
-      <!-- Grid column -->
-
-      <hr class="clearfix w-100 d-md-none">
-
-      <!-- Grid column -->
-      <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
-
-        <!-- Contact details -->
-        <h5 class="font-weight-bold text-uppercase mb-4">Address</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <p>
-              <i class="fas fa-home mr-3"></i>Scetpa building, 19A Cộng Hòa, Street, Tân Bình, Hồ Chí Minh</p>
-          </li>
-          <li>
-            <p>
-              <i class="fas fa-envelope mr-3"></i> lenguyenthanh102@gmail.com</p>
-          </li>
-          <li>
-            <p>
-              <i class="fas fa-phone mr-3"></i> +84 946 046 279</p>
-          </li>
-          <li>
-            <p>
-              <i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
-          </li>
-        </ul>
-
-      </div>
-      <!-- Grid column -->
-
-      <hr class="clearfix w-100 d-md-none">
-
-      <!-- Grid column -->
-      <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
-
-        <!-- Social buttons -->
-        <h5 class="font-weight-bold text-uppercase mb-4">Follow Us</h5>
-
-        <!-- Facebook -->
-        <a type="button" class="btn-floating btn-fb">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-       
-        <!-- Google +-->
-        <a type="button" class="btn-floating btn-gplus">
-          <i class="fab fa-google-plus-g"></i>
-        </a>
-        
-
-      </div>
-      <!-- Grid column -->
-
-    </div>
-    <!-- Grid row -->
-
-  </div>
-  <!-- Footer Links -->
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
-  </div>
-  <!-- Copyright -->
-
-</footer>
-
-
-<!-- Footer -->
+<jsp:include page="preFooterHome.jsp" /> 
+<script>
+	<c:if test="${access=='No'}">
+		alert("Không tìm thấy sản phẩm hoặc web không tồn tại");
+	</c:if>
+</script>
 </body>
 </html>

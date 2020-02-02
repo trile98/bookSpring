@@ -90,6 +90,7 @@
                 </div>
             </div>
         </div>
+        </div>
     <!-- Mobile Menu end -->
     <!-- Main Menu area start-->
     <div class="main-menu-area mg-tb-40">
@@ -119,7 +120,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <!-- Main Menu area End-->
 	<div class="container">
 			<div class="row">
