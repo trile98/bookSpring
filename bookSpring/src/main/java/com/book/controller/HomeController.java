@@ -29,7 +29,7 @@ import com.book.model.Product;
 import com.book.model.User;
 
 @Controller
-@SessionAttributes({"user","ordered"})
+
 public class HomeController {
 
 	@RequestMapping(path = "/")
@@ -41,15 +41,7 @@ public class HomeController {
 		}
 		else {tongsopage = list.size() / 10;}
 		
-		User user =new User();
-		user.setID(2);
-		user.setName("Le");
-		List<Integer> ordered=new ArrayList<Integer>();
-		ordered.add(12);
-		ordered.add(15);
 		
-		modelMap.addAttribute("user", user);
-		modelMap.addAttribute("ordered", ordered);
 		modelMap.addAttribute("listProduct", list);
 		modelMap.addAttribute("page", tongsopage);
 		return "index";
