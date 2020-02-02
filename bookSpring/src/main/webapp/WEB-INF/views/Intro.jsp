@@ -36,12 +36,7 @@
 </head>
   
 <body style="background-color: #4B4743">
-<c:forEach items="${ordered}" var="letter" >
-	${letter}
-</c:forEach>
-<br>
-mang 0=${ordered[0]}
-size=${ordered.size()}
+
 <div class="container "  style="background-color: #1C1C1B">
 
     <!-- Control the column width, and how they should appear on different devices -->
