@@ -116,10 +116,10 @@
 							      	 		<span hidden class="Title">${letter.getTitle()}</span>
 							      	 		<span hidden class="ImageLink">${letter.getImageLink()}</span>
 							      	 		<span hidden class="Price">${letter.getPrice()}</span>
-							      	 		<form action="add-to-cart" method="post">
-							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
-							      	 		<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
-							      		</form>
+							      	 		<form action="../../bookSpring/add-to-cart" method="post">
+							      	 			<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
+							      	 			<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
+							      			</form>
 							      		</div>
 								  		
 								  	</div>
@@ -160,7 +160,7 @@
 							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
 							      	 		<button type="submit"  class="btn btn-light-blue btn-md btn-giohang">Chi tiết</button>
 							      		</div>
-							      		<form action="add-to-cart" method="post">
+							      		<form action="../../bookSpring/add-to-cart" method="post">
 							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
 							      	 		<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
 							      		</form>
