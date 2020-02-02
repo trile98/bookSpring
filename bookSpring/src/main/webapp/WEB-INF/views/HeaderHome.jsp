@@ -55,7 +55,7 @@
 			
 				<button class="btn peach-gradient" style="float: right">Sign In</button>
 				<button class="btn purple-gradient" style="float: right">Sign Up</button>
-				<button class="btn blue-gradient" style="float: right"><i class="fas fa-shopping-cart"></i></button>
+				<button class="btn blue-gradient" style="float: right"><a href="../bookSpring/Cart-new"><i class="fas fa-shopping-cart"></i>Giỏ hàng</a></button>
 			</div>
 
     </div>

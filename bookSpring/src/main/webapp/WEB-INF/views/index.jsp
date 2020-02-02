@@ -114,7 +114,7 @@
 							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
 							      	 		<button type="submit"  class="btn btn-light-blue btn-md">Chi tiết</button>
 							      		</form>
-							      		<form action="Order" method="post">
+							      		<form action="add-to-cart" method="post">
 							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
 							      	 		<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
 							      		</form>
@@ -157,7 +157,7 @@
 							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
 							      	 		<button type="submit"  class="btn btn-light-blue btn-md">Chi tiết</button>
 							      		</form>
-							      		<form action="Order" method="post">
+							      		<form action="add-to-cart" method="post">
 							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
 							      	 		<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
 							      		</form>
