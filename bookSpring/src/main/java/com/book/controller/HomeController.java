@@ -119,13 +119,30 @@ public class HomeController {
 		return "Contact";
 	}
 
-	@RequestMapping(path = "/Detail", method = RequestMethod.POST)
-	public String showDetailpage(@RequestParam int ID, ModelMap modelMap) {
-		modelMap.addAttribute("ID", ID);
+	@RequestMapping(path = "/Detail", method = { RequestMethod.POST,RequestMethod.GET})
+	public String showProductDetail(@RequestParam ("id") int id, ModelMap modelMap) {
+		
+		try {
+			DatabaseJDBC jdbc = new DatabaseJDBC();
+			JdbcTemplate template = jdbc.getTemplate();
+			
+			String sql = "Select * from Product where id="+id;
+			List<Product> product = template.query(sql, new ProductHomeMapper());
+			
+//			String sqlAuthor = "Select * from product where Author like '% "+ author + " %' ";
+//			List<Product> list = template.query(sql, new ProductHomeMapper());
+//			
+			modelMap.addAttribute("Product", product);
+//			modelMap.addAttribute("listProduct", list);
+			modelMap.addAttribute("ResultProductDetailMes","Successfull");
 
-		// modelMap.addAttribute("Product",GetInfoProduct()); thêm product nhằm lấy
-		// thông tin trong trang Detail
-		return "Detail";
+			return ("Detail");
+		}
+		catch(Exception e) {
+			modelMap.addAttribute("ResultProductDetailMes", "Fail to show book info. Error: "+e.getMessage());
+			return ("Detail");
+		}
+
 	}
 
 	

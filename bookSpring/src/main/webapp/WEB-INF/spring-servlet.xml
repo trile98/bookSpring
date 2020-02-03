@@ -35,4 +35,7 @@
 		location="/resources/Contact/" cache-period="31556926" />
 	<mvc:resources mapping="/resourcePayment/**"
 		location="/resources/Payment/" cache-period="31556926" />	
+		
+	<mvc:resources mapping="/resourcesBookDetail/**"
+		location="/resources/BookDetail/" cache-period="31556926" />
 </beans>

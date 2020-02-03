@@ -109,9 +109,9 @@
 							      <small class="text-muted"><div style="font-size:12px;color: #85391F;margin-left: 20px">Đã bán:${letter.getCount()} sản phẩm</div></small></p>
 							      	<div class="form-row">
 							      	
-							      		<form action="Detail" method="post">
-							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
-							      	 		<button type="submit"  class="btn btn-light-blue btn-md">Chi tiết</button>
+							      		<form action="Detail?id=${letter.getID()}" method="POST">
+								      	 	<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
+								      	 	<button type="submit"  class="btn btn-light-blue btn-md" >Chi tiết</button>
 							      		</form>
 							      		<form action="add-to-cart" method="post">
 							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
@@ -152,9 +152,9 @@
 							      <p class="card-text "><h3 style="color: #85391F;margin-left: 20px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${letter.getPrice()}"/>₫ </h3>
 							      <small class="text-muted"><div style="font-size:12px;color: #85391F;margin-left: 20px">Đã bán:${letter.getCount()} sản phẩm</div></small></p>
 							      <div class="form-row">
-							      		<form action="Detail" method="post">
-							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
-							      	 		<button type="submit"  class="btn btn-light-blue btn-md">Chi tiết</button>
+							      		<form action="Detail?id=${letter.getID()}" method="POST">
+								      	 	<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
+								      	 	<button type="submit"  class="btn btn-light-blue btn-md" >Chi tiết</button>
 							      		</form>
 							      		<form action="add-to-cart" method="post">
 							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
