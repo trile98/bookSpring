@@ -24,12 +24,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.book.database.AccountMapper;
 import com.book.database.DatabaseJDBC;
 import com.book.database.ProductHomeMapper;
+import com.book.database.TopProductSalesMapper;
 import com.book.model.Account;
 import com.book.model.Product;
 import com.book.model.User;
 
 @Controller
-
+@SessionAttributes("user")
 public class HomeController {
 
 	@RequestMapping(path = "/")
@@ -152,7 +153,7 @@ public class HomeController {
 				+ "where p.ID=o.ProductId "
 				+ "group by p.ID,p.Title,p.Author,p.ImageLink,p.Price,p.PublishDate,p.Cover,p.Manufacturer,p.Publisher,p.Introduction,p.SKU "
 				+ "order by count desc";
-		List<Product> list = template.query(sql, new ProductHomeMapper());
+		List<Product> list = template.query(sql, new TopProductSalesMapper());
 		return list;
 
 	}

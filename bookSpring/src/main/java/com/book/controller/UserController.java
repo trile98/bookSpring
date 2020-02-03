@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.book.database.AccountMapper;
@@ -27,9 +28,12 @@ import com.book.model.OrderDetail;
 import com.book.model.OrderProduct;
 
 @Controller
+@SessionAttributes("user")
 public class UserController {
+	String user;
 	@RequestMapping(value = "/user/signin")
-	public ModelAndView showLogin() {
+	public ModelAndView showLogin(ModelMap model) {
+		
 		return new ModelAndView("UserLogin", "command", new Account());
 	}
 
@@ -50,7 +54,8 @@ public class UserController {
 
 			switch(CompareResult) {
 			case 1:
-				return ("redirect:/user/home");
+				model.addAttribute("user",user);
+				return ("redirect:/");
 			case 2:
 				model.addAttribute("errorMes", "Incorrect account type!");
 				return ("UserLoginFail");
@@ -95,7 +100,7 @@ public class UserController {
 				String sql = "Insert into Users values ('"+name+"', '"+homeAddress+"', '"+email+"', '"+phoneNumber+"', '"+username+"', '"+password+"', 2)";
 				template.execute(sql);
 				
-				return ("redirect:/user/home");}
+				return ("redirect:/user/signin");}
 				
 			case 2:
 				model.addAttribute("errorMes", "Email already used!");
@@ -130,6 +135,7 @@ public class UserController {
 			if(acc.getUsername().equals(name)) {
 				if(acc.getPassword().equals(pass)) {
 					if(acc.getAuth()==2) {
+						user=name;
 						return 1;
 					}
 					//is not user

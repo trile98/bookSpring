@@ -40,7 +40,6 @@
 </head>
   
 <body style="background-color: #4B4743">
-
 <jsp:include page="HeaderHome.jsp" /> 
 <div class="container" style="background-color: #1C1C1B">
 
@@ -107,7 +106,7 @@
 							      <p class="card-text">author:<i style="font-family: Tahoma;color: olive;">${letter.getAuthor()}</i></p>
 							      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 							      <p class="card-text "><h3 style="color: #85391F;margin-left: 20px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${letter.getPrice()}"/>₫ </h3>
-							      <small class="text-muted"><div style="font-size:12px;color: #85391F;margin-left: 20px"> (20% off)</div></small></p>
+							      <small class="text-muted"><div style="font-size:12px;color: #85391F;margin-left: 20px">Đã bán:${letter.getCount()} sản phẩm</div></small></p>
 							      	<div class="form-row">
 							      	
 							      		<form action="Detail" method="post">
@@ -151,7 +150,7 @@
 							      <p class="card-text">author:<i style="font-family: Tahoma;color: olive;">${letter.getAuthor()}</i></p>
 							      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 							      <p class="card-text "><h3 style="color: #85391F;margin-left: 20px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${letter.getPrice()}"/>₫ </h3>
-							      <small class="text-muted"><div style="font-size:12px;color: #85391F;margin-left: 20px"> (20% off)</div></small></p>
+							      <small class="text-muted"><div style="font-size:12px;color: #85391F;margin-left: 20px">Đã bán:${letter.getCount()} sản phẩm</div></small></p>
 							      <div class="form-row">
 							      		<form action="Detail" method="post">
 							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
