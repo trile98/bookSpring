@@ -16,6 +16,7 @@
 <script type="text/javascript" src="<c:url value="resourcePayment/cart.js"/>"></script>
 </head>
 <body>
+
 	<%@ include file="HeaderHome.jsp" %>
 	<div class="container" style="padding: 20px; background-color: white">
 		<h1 style="font-weight: bold; font-family: HelveticaNeue-Medium; color: brown">Giỏ hàng</h1>
@@ -30,9 +31,8 @@
 	    <label class="product-line-price">Thành tiền</label>
 	  </div>
 	  
-	  <c:forEach items="${giohang}" var="pd">
+	  <c:forEach items="${giohang}" var="pd">		
 	  	<div class="product">
-	  	
 	    <div class="product-image">
 	      <img src="${pd.getImageLink()}">
 	    </div>
@@ -44,14 +44,11 @@
 	    <div class="product-price">${pd.getPrice()}</div>
 	    
 	    <div class="product-quantity">
-	      <input type="number" value="1" min="1">
-	    
+	      <input type="number" value="${pd.getCount()}" min="1">	    
 	    </div>
 	    
 	    <div class="product-removal">
-	      <button class="remove-product">	      
-	        Xóa
-	      </button>  
+	      	<button class="remove-product">Xóa</button>
 	    </div>
 	    <div class="product-line-price">${pd.getPrice()}</div>
 	  </div>

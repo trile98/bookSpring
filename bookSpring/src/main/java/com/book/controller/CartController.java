@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.book.database.AccountDetailMapper;
+import com.book.database.CartMapper;
 import com.book.database.DatabaseJDBC;
 import com.book.database.ProductHomeMapper;
 import com.book.model.AccountDetail;
 import com.book.model.Order;
 import com.book.model.Product;
+import com.book.model.productCart;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -75,16 +77,48 @@ public class CartController{
 	
 	@RequestMapping(path = "/add-to-cart")
 	public String addCartProduct(@RequestParam int ID , ModelMap modelMap, HttpSession httpSession) {	
-		DatabaseJDBC jdbc = new DatabaseJDBC();
-		JdbcTemplate template = jdbc.getTemplate();
-		String sql = "Select * from Product where ID="+ID;
 		
-		List<Product> a = template.query(sql, new ProductHomeMapper());
-		giohangs.add(a.get(0));
-		httpSession.setAttribute("giohang", giohangs);
+		if(httpSession.getAttribute("giohang") == null){
+			DatabaseJDBC jdbc = new DatabaseJDBC();
+			JdbcTemplate template = jdbc.getTemplate();
+			String sql = "Select * from Product where ID="+ID;		
+			List<Product> a = template.query(sql, new CartMapper());		
+			giohangs.add(a.get(0));
+			httpSession.setAttribute("giohang", giohangs);
+		}
+		else{
+			int vitri = KiemTraTonTai(ID, httpSession);
+			if(vitri ==-1){
+				List<Product> list = (List<Product>) httpSession.getAttribute("giohang");
+				DatabaseJDBC jdbc = new DatabaseJDBC();
+				JdbcTemplate template = jdbc.getTemplate();
+				String sql = "Select * from Product where ID="+ID;		
+				List<Product> a = template.query(sql, new CartMapper());		
+				list.add(a.get(0));
+			}
+			else {
+				List<Product> list = (List<Product>) httpSession.getAttribute("giohang");
+				int soluongmoi = list.get(vitri).getCount() + 1;
+				list.get(vitri).setCount(soluongmoi);
+			}
+		}
 
 		return ("redirect:/");	
 	}
+	
+	private int KiemTraTonTai(int ID, HttpSession httpSession)
+	{
+		List<Product> list = (List<Product>) httpSession.getAttribute("giohang");
+		for(int i=0; i<list.size();i++)
+		{
+			if(list.get(i).getID() == ID)
+				return i;
+		}
+		return -1;
+		
+	}
+
+	
 	
 	@RequestMapping(path = "/Cart-new")
 	public String showCart() {
