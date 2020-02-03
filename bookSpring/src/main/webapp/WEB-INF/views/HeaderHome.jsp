@@ -53,9 +53,17 @@
 				    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 				  </form>
 			
-				<button class="btn peach-gradient" style="float: right">Sign In</button>
-				<button class="btn purple-gradient" style="float: right">Sign Up</button>
-				<button class="btn blue-gradient" style="float: right"><a href="../bookSpring/Cart-new"><i class="fas fa-shopping-cart"></i>Giỏ hàng</a></button>
+				<a href="user/signin"><button class="btn peach-gradient" style="float: right">Sign In</button></a>
+				<a href="user/signup"><button class="btn purple-gradient" style="float: right">Sign Up</button></a>
+				<c:choose>
+				    <c:when test="${empty user}">
+				        <a href="user/signin"><button class="btn blue-gradient" style="float: right"><i class="fas fa-shopping-cart"></i>Giỏ hàng</button></a>
+				    </c:when>
+				    <c:otherwise>
+				        <a href="Cart-new"><button class="btn blue-gradient" style="float: right"><i class="fas fa-shopping-cart"></i>Giỏ hàng</button></a>
+				    </c:otherwise>
+				</c:choose>
+				
 			</div>
 
     </div>

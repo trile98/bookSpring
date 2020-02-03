@@ -37,47 +37,10 @@
   
 <body style="background-color: #4B4743">
 
+<jsp:include page="HeaderHome.jsp" />
+
 <div class="container "  style="background-color: #1C1C1B">
 
-    <!-- Control the column width, and how they should appear on different devices -->
-    <div class="row" style="height: 240px">
-      <div class="col-sm-12" style="padding: 0px 14px;height: 240px"><img alt="Logo" src="resourcesHome/images/banner1.jpg"style="width:100%;height: 100%"></div>
-
-    </div>
-
-    
-        <div class="row">
-			<div class="col-sm-12 col-md-12" style="padding: 0px 10px">
-				<nav class="navbar navbar-light bg-dark" style="background-color: #1C1C1B">
-				  <form class="form-inline" action="Books/1" >
-				    <input class="form-control mr-sm-2" type="search" name="Search" style="width: 300px" placeholder="Search" aria-label="Search">
-				    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				  </form>
-			
-				<button class="btn peach-gradient" style="float: right">Sign In</button>
-				<button class="btn purple-gradient" style="float: right">Sign Up</button>
-				<button class="btn blue-gradient" style="float: right"><i class="fas fa-shopping-cart"></i></button>
-			</div>
-
-    </div>
-
-
-
-    <div class="row ">
-		<div class="col-sm-12 col-md-12 position-relative " data-spy="affix" data-offset-top="197">
-		  <div >
-			  <div id="cssmenu">
-			   <ul>
-			   <li><a href="Home/1" class="current">Trang chủ</a></li>
-			            <li><a href="Intro">Giới thiệu</a></li>
-			            <li><a href="Books/1?Search=">Sách</a></li>            
-			            <li><a href="NewBooks/1">Sách mới</a></li>  
-			            <li><a href="Contact">Liên hệ</a></li>	</ul>
-			    </div> <!-- end of menu -->
-
-		</div>
-    </div>
-    </div>
     <div class="row">
     	<div class="col-sm-12 col-md-12">
 		   <div id="myCarousel" class="carousel carousel-fade slide border" data-ride="carousel">

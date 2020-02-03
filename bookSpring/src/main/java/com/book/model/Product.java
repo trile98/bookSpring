@@ -18,6 +18,8 @@ public class Product {
 	private String SKU;
 	private int count;
 
+	
+
 	public int getCount() {
 		return count;
 	}

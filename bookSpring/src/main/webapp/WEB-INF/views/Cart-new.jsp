@@ -16,6 +16,7 @@
 <script type="text/javascript" src="<c:url value="resourcePayment/cart.js"/>"></script>
 </head>
 <body>
+
 	<%@ include file="HeaderHome.jsp" %>
 	<div class="container" style="padding: 20px; background-color: white">
 		<h1 style="font-weight: bold; font-family: HelveticaNeue-Medium; color: brown">Giỏ hàng</h1>
@@ -30,9 +31,8 @@
 	    <label class="product-line-price">Thành tiền</label>
 	  </div>
 	  
-	  <c:forEach items="${giohang}" var="pd">
+	  <c:forEach items="${giohang}" var="pd">		
 	  	<div class="product">
-	  	
 	    <div class="product-image">
 	      <img src="${pd.getImageLink()}">
 	    </div>
@@ -44,20 +44,18 @@
 	    <div class="product-price">${pd.getPrice()}</div>
 	    
 	    <div class="product-quantity">
-	      <input type="number" value="1" min="1">
-	    
+	      <input type="number" value="${pd.getCount()}" min="1">	    
 	    </div>
 	    
 	    <div class="product-removal">
-	      <button class="remove-product">	      
-	        Xóa
-	      </button>  
+	      	<button class="remove-product">Xóa</button>
 	    </div>
 	    <div class="product-line-price">${pd.getPrice()}</div>
 	  </div>
 	 
 	  </c:forEach>
- 
+	  
+ <form action="payment/add-payment" method="post">
 	  <div class="totals">
 	    <div class="totals-item">
 	      <label>Tạm tính:</label>
@@ -73,12 +71,28 @@
 	    </div>
 	    <div class="totals-item totals-item-total">
 	      <label>Tổng tiền</label>
-	      <div class="totals-value" id="cart-total"></div>
+	       
+	      <div class="totals-value" id="cart-total">
+	      </div>
+	     
+	     	   <input name="total" type="hidden" id="input-cart-total" readonly="true">
+	     
+	      
+	      	
 	    </div>
 	  </div>
 	  
-	  <script type="text/javascript">
+	  
+       
+       
+      <button class="checkout" type="submit"><a href="../bookSpring/payment" style="text-decoration: none;">Tiến hành đặt hàng</a></button>
+ </form>
+ 
+ <script type="text/javascript">
 	  $( window ).on( "load", function() {
+		  
+		  
+		  	
 			var taxRate = 0.05;
 			var shippingRate = 15.00; 
 			var fadeTime = 300;
@@ -98,8 +112,12 @@
 			  $('.totals-value').fadeOut(fadeTime, function() {
 			    $('#cart-subtotal').html(subtotal.toFixed(2));
 			    $('#cart-tax').html(tax.toFixed(2));
+			    
 			    $('#cart-shipping').html(shipping.toFixed(2));
 			    $('#cart-total').html(total.toFixed(2));
+			    
+			    var x = $('#cart-total').text();
+			
 			    if(total == 0){
 			      $('.checkout').fadeOut(fadeTime);
 			    }else{
@@ -109,10 +127,6 @@
 			  });
 		});
 	  </script>
-       
-       
-      <button class="checkout"><a href="../bookSpring/payment" style="text-decoration: none;">Tiến hành đặt hàng</a></button>
- 
 	</div> 
 </div>
 
