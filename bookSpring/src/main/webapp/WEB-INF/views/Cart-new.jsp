@@ -108,7 +108,7 @@
 	  </script>
        
        
-      <button class="checkout"><a href="payment" style="text-decoration: none;">Tiến hành đặt hàng</a></button>
+      <button class="checkout"><a href="../bookSpring/payment" style="text-decoration: none;">Tiến hành đặt hàng</a></button>
  
 	</div> 
 </div>
