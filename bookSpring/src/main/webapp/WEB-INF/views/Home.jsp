@@ -104,23 +104,17 @@
 							      <p class="card-text" style="height: 60px;overflow: hidden">author:<i style="font-family: Tahoma;color: olive;">${letter.getAuthor()}</i></p>
 							      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 							      <p class="card-text "><h3 style="color: #85391F;margin-left: 20px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${letter.getPrice()}"/>₫ </h3>
-							      <small class="text-muted"><div style="font-size:12px;color: #85391F;margin-left: 20px"> (20% off)</div></small></p>
+							      <small class="text-muted"><div style="font-size:12px;color: #85391F;margin-left: 20px"> Đã bán:${letter.getCount()} sản phẩm</div></small></p>
 							      	<div class="form-row">
 							      	
-							      		<div>
-							      	 		<span hidden class="ID">${letter.getID()}</span>
-							      	 		<button type="submit"  class="btn btn-light-blue btn-md btn-giohang">Chi tiết</button>
-							      		</div>
-							      		<div>
-							      	 		<span hidden class="ID">${letter.getID()}</span>
-							      	 		<span hidden class="Title">${letter.getTitle()}</span>
-							      	 		<span hidden class="ImageLink">${letter.getImageLink()}</span>
-							      	 		<span hidden class="Price">${letter.getPrice()}</span>
-							      	 		<form action="../../bookSpring/add-to-cart" method="post">
-							      	 			<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
-							      	 			<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
-							      			</form>
-							      		</div>
+							      		<form action="Detail" method="post">
+							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
+							      	 		<button type="submit"  class="btn btn-light-blue btn-md">Chi tiết</button>
+							      		</form>
+							      		<form action="../add-to-cart" method="post">
+							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
+							      	 		<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
+							      		</form>
 								  		
 								  	</div>
 							    </div>
@@ -154,13 +148,13 @@
 							      <p class="card-text" style="height: 60px;overflow: hidden">author:<i style="font-family: Tahoma;color: olive;">${letter.getAuthor()}</i></p>
 							      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 							      <p class="card-text "><h3 style="color: #85391F;margin-left: 20px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${letter.getPrice()}"/>₫ </h3>
-							      <small class="text-muted"><div style="font-size:12px;color: #85391F;margin-left: 20px"> (20% off)</div></small></p>
+							      <small class="text-muted"><div style="font-size:12px;color: #85391F;margin-left: 20px"> Đã bán:${letter.getCount()} sản phẩm</div></small></p>
 							      <div class="form-row">
-							      		<div>
+							      		<form action="Detail" method="post">
 							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
-							      	 		<button type="submit"  class="btn btn-light-blue btn-md btn-giohang">Chi tiết</button>
-							      		</div>
-							      		<form action="../../bookSpring/add-to-cart" method="post">
+							      	 		<button type="submit"  class="btn btn-light-blue btn-md">Chi tiết</button>
+							      		</form>
+							      		<form action="../add-to-cart" method="post">
 							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
 							      	 		<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
 							      		</form>
