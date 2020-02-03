@@ -107,14 +107,14 @@
 							      
 							      	<div class="form-row">
 							      	
-							      		<form action="Detail" method="post">
-							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
-							      	 		<button type="submit"  class="btn btn-light-blue btn-md">Chi tiết</button>
+							      		<form action="../Detail?id=${letter.getID()}" method="POST">
+								      	 	<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
+								      	 	<button type="submit"  class="btn btn-light-blue btn-md" >Chi tiết</button>
 							      		</form>
 							      		
 									<c:choose>
 									    <c:when test="${empty user}">
-										        <a href="user/signin"><button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button></a>
+										        <a href="../user/signin"><button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button></a>
 										    </c:when>
 										    <c:otherwise>
 										    	<form action="../add-to-cart" method="post">
@@ -156,14 +156,14 @@
 							      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 							      <p class="card-text "><h3 style="color: #85391F;margin-left: 20px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${letter.getPrice()}"/>₫ </h3>
 							      <div class="form-row">
-							      		<form action="Detail" method="post">
-							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
-							      	 		<button type="submit"  class="btn btn-light-blue btn-md">Chi tiết</button>
+							      		<form action="../Detail?id=${letter.getID()}" method="POST">
+								      	 	<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
+								      	 	<button type="submit"  class="btn btn-light-blue btn-md" >Chi tiết</button>
 							      		</form>
 							      		
 										<c:choose>
 									    <c:when test="${empty user}">
-										        <a href="user/signin"><button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button></a>
+										        <a href="../user/signin"><button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button></a>
 										    </c:when>
 										    <c:otherwise>
 										    	<form action="../add-to-cart" method="post">

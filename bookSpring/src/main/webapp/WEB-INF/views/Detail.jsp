@@ -45,96 +45,14 @@
 </head>
   
 <body style="background-color: #4B4743">
+<jsp:include page="HeaderHome.jsp" />
 <div class="container" style="background-color: #1C1C1B">
 
-    <!-- Control the column width, and how they should appear on different devices -->
-    <div class="row" style="height: 240px">
-      <div class="col-sm-12" style="padding: 0px 10px;height: 240px"><img alt="Logo" src="resourcesBookDetail/images/banner1.jpg"style="width:100%;height: 100%"></div>
-
-    </div>
-
     
-    <div class="row">
-			<div class="col-sm-12 col-md-12" style="padding: 0px 10px">
-				<nav class="navbar navbar-light bg-dark" style="background-color: #1C1C1B">
-				  <form class="form-inline" action="../Books/1" >
-				    <input class="form-control mr-sm-2" type="search" name="Search" style="width: 300px" placeholder="Search">
-				    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				  </form>
-			
-				<a href="user/signin"><button class="btn peach-gradient" style="float: right">Sign In</button></a>
-				<a href="user/signup"><button class="btn purple-gradient" style="float: right">Sign Up</button></a>
-				<c:choose>
-				    <c:when test="${empty user}">
-				        <a href="user/signin"><button class="btn blue-gradient" style="float: right"><i class="fas fa-shopping-cart"></i>Giỏ hàng</button></a>
-				    </c:when>
-				    <c:otherwise>
-				        <a href="Cart-new"><button class="btn blue-gradient" style="float: right"><i class="fas fa-shopping-cart"></i>Giỏ hàng</button></a>
-				    </c:otherwise>
-				</c:choose>
-				</div>
-
-    </div>
 
 
 
-    <div class="row ">
-		<div class="col-sm-12 col-md-12 position-relative " data-spy="affix" data-offset-top="197">
-		  <div >
-			  <div id="cssmenu">
-			   <ul>
-			   			<li><a href="Home" class="current">Trang chủ</a></li>
-			            <li><a href="Intro">Giới thiệu</a></li>
-			            <li><a href="Books">Sách</a></li>            
-			            <li><a href="sachmoi.html">Sách mới</a></li>  
-			            <li><a href="Contact">Liên hệ</a></li>	</ul>
-			    </div> <!-- end of menu -->
 
-			</div>
-    	</div>
-    </div>
-    
-   <div class="row">
-    	<div class="col-sm-12 col-md-12">
-		   <div id="myCarousel" class="carousel carousel-fade slide border" data-ride="carousel">
-		   <ol class="carousel-indicators">
-		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-		    <li data-target="#myCarousel" data-slide-to="1"></li>
-		    <li data-target="#myCarousel" data-slide-to="2"></li>
-		    <li data-target="#myCarousel" data-slide-to="3"></li>
-		    <li data-target="#myCarousel" data-slide-to="4"></li>
-		  </ol>
-			   <div class="carousel-inner">
-			      <div class="carousel-item active" style="">
-			         <a target="_blank" href="javascript:"><img src="<c:url value="resourcesBookDetail/images/nature/image1.jpg"/>" alt="hình 1" style="width: 100%" /> </a>
-			      </div>
-			      <div class="carousel-item">
-			         <a target="_blank" href="javascript:"><img src="<c:url value="resourcesBookDetail/images/nature/image2.jpg"/>" alt="hình 2" style="width: 100%"/> </a>
-			      </div>
-			      <div class="carousel-item">
-			         <a target="_blank" href="javascript:"><img src="<c:url value="resourcesBookDetail/images/nature/image3.jpg"/>" alt="hình 3" style="width: 100%"/> </a>
-			      </div>
-			      <div class="carousel-item">
-			         <a target="_blank" href="javascript:"><img src="<c:url value="resourcesBookDetail/images/nature/image4.jpg"/>" alt="hình 4" style="width: 100%"/> </a>
-			      </div>
-			      <div class="carousel-item">
-			         <a target="_blank" href="javascript:"><img src="<c:url value="resourcesBookDetail/images/nature/image5.jpg"/>" alt="hình 5" style="width: 100%"/> </a>
-			      </div>
-			   </div>
-			   <!-- Controls -->
-			   <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-			   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			   <span class="sr-only">Previous</span>
-			   </a>
-			   <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-			   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			   <span class="sr-only">Next</span>
-			   </a>
-			</div>
-
-		</div>
-
-    </div>
   	
   	<div class="row" style="padding:10px 40px;">	
   		<c:forEach items="${Product}" var="product" begin="0" end ="9" step="2">
@@ -172,10 +90,17 @@
   				</div>
   				
   				<div>
-  					<form action="add-to-cart" method="POST">
-						<input type="hidden" id="hidden" name="ID" value="${product.getID()}">
-						<button type="submit"  class="btn btn-light-blue btn-md" >Đặt hàng</button>
-					</form>
+  					<c:choose>
+				    <c:when test="${empty user}">
+					        <a href="user/signin"><button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button></a>
+					    </c:when>
+					    <c:otherwise>
+					    	<form action="add-to-cart" method="post">
+				      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
+				      	 		<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
+				      		</form>
+					    </c:otherwise>
+					</c:choose>
   				</div>
   				
   			</div>
