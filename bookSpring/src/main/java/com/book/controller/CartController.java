@@ -70,9 +70,9 @@ public class CartController{
 		String sql = "Update Users Set Name = '"+Name+"', Email = '"+Email+"', PhoneNumber ='"+PhoneNumber+"', HomeAddress = '"+HomeAddress+"'Where Username = '"+user+"'" ;
 		
 		/* String sql2 = "Insert into Orders values ("+ID+",'1/1/2020',"+total+")"; */
-		 String sql2 = "Insert into Orders values ("+ID+",'1/1/2020',20000)"; 
+		 
 		template.execute(sql);
-		template.execute(sql2);
+		
 		
 		
 		String sql3 = "Select top 1 ID from Orders Order by ID DESC";
@@ -83,10 +83,23 @@ public class CartController{
 								return (Integer)rs.getInt("ID");
 								}
 								});
+		
+		int subtotal = 0;
+		int ship = 15;
 		for(int i=0;i<listproduct.size();i++) {
 			String sql4 = "Insert into OrderDetail values ("+IDs.get(0)+","+listproduct.get(i).getID()+","+listproduct.get(i).getCount()+")";
 			template.execute(sql4);
+			subtotal = subtotal + (listproduct.get(i).getCount() * listproduct.get(i).getPrice());
 		}
+		
+		float tax = 1/20 * subtotal;
+		long total = (long) (ship + tax + subtotal);
+		
+		String sql2 = "Insert into Orders values ("+ID+", GETDATE(),"+total+")"; 
+		template.execute(sql2);
+		
+		
+		
 		//remove session when finish payment
 		session.removeAttribute("giohang");
 		return ("redirect:/");	
