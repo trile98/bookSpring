@@ -112,10 +112,18 @@
 							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
 							      	 		<button type="submit"  class="btn btn-light-blue btn-md">Chi tiết</button>
 							      		</form>
-							      		<form action="../add-to-cart" method="post">
-							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
-							      	 		<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
-							      		</form>
+							      		
+							      		<c:choose>
+									    <c:when test="${empty user}">
+										        <a href="user/signin"><button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button></a>
+										    </c:when>
+										    <c:otherwise>
+										    	<form action="../add-to-cart" method="post">
+									      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
+									      	 		<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
+									      		</form>
+										    </c:otherwise>
+										</c:choose>
 								  		
 								  	</div>
 							    </div>
@@ -155,11 +163,17 @@
 							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
 							      	 		<button type="submit"  class="btn btn-light-blue btn-md">Chi tiết</button>
 							      		</form>
-							      		<form action="../add-to-cart" method="post">
-							      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
-							      	 		<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
-							      		</form>
-								  		
+							      		<c:choose>
+									    <c:when test="${empty user}">
+										        <a href="user/signin"><button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button></a>
+										    </c:when>
+										    <c:otherwise>
+										    	<form action="../add-to-cart" method="post">
+									      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
+									      	 		<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
+									      		</form>
+										    </c:otherwise>
+										</c:choose>
 								  	</div>
 							    </div>
 							  </div>
