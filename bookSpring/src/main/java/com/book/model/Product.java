@@ -16,17 +16,6 @@ public class Product {
 	private String Publisher;
 	private String Introduction;
 	private String SKU;
-	private int count;
-
-	
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
 
 	public int getID() {
 		return ID;
