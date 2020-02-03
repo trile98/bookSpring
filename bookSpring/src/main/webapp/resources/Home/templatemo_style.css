@@ -10,7 +10,7 @@ body {
 	font-family: Verdana, Arial, san-serif;
 	font-size: 14px;
 	color: #FFF;
-	background: #4B4743;
+	background: #4b4743;
 }
 
 a:link, a:visited { color: #e6e154; text-decoration: none; font-weight: bold;} 
@@ -25,8 +25,6 @@ img {
 	margin: 0px;
 	padding: 0px;
 	border: none;
-	width: 250px;
-	height: 300px;
 }
 
 
@@ -180,7 +178,7 @@ img {
 
 
 /* content */
-#content {
+#templatemo_content {
 	clear: both;
 	width: 920px;
 	margin-top: 20px;
@@ -368,7 +366,8 @@ img {
 	padding: 20px 0px 20px 0;
 	text-align: center;
 	border-top: 1px solid #25211e;
-	background-color: #fff0f5;
+	color: #999;
+	background-color: #111110;
 }
 
 #templatemo_footer a{

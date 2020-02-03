@@ -1,9 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Oswald);
-#menu,
-#menu ul,
-#menu ul li,
-#menu ul li a,
-#menu #menu-button {
+#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul li a,
+#cssmenu #menu-button {
   margin: 0;
   padding: 0;
   border: 0;
@@ -15,8 +15,8 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-#menu:after,
-#menu > ul:after {
+#cssmenu:after,
+#cssmenu > ul:after {
   content: ".";
   display: block;
   clear: both;
@@ -24,10 +24,10 @@
   line-height: 0;
   height: 0;
 }
-#menu #menu-button {
+#cssmenu #menu-button {
   display: none;
 }
-#menu {
+#cssmenu {
 	width: auto;
 	border: 3px solid #cbc750;
 	border-radius: 3px;
@@ -36,24 +36,24 @@
 	background-image:url(images/templatemo_h1_bg.jpg) no-repeat;
 	box-shadow: 1px 1px 0 #df7002, 2px 2px 0 #df7002, 3px 3px 3px rgba(0, 0, 0, 0.35);
 }
-#menu > ul {
+#cssmenu > ul {
   background: url('images/bg.png');
 }
-#menu > ul > li {
+#cssmenu > ul > li {
   float: left;
 }
-#menu.align-center > ul {
+#cssmenu.align-center > ul {
   font-size: 0;
   text-align: center;
 }
-#menu.align-center > ul > li {
+#cssmenu.align-center > ul > li {
   display: inline-block;
   float: none;
 }
-#menu.align-right > ul > li {
+#cssmenu.align-right > ul > li {
   float: right;
 }
-#menu > ul > li > a {
+#cssmenu > ul > li > a {
 	padding: 20px 50px;
 	font-size: 16px;
 	text-transform: none;
@@ -67,12 +67,12 @@
   -o-transition: all .2s ease;
   transition: all .2s ease;
 }
-#menu > ul > li > a:hover,
-#menu > ul > li:hover > a,
-#menu > ul > li.active > a {
+#cssmenu > ul > li > a:hover,
+#cssmenu > ul > li:hover > a,
+#cssmenu > ul > li.active > a {
 	color: #6F3;
 }
-#menu #menu-indicator {
+#cssmenu #menu-indicator {
 	position: absolute;
 	bottom: 0;
 	display: block;
@@ -86,28 +86,28 @@
 	transition: all 0.25s ease-out;
 	border-bottom-color: #6F3;
 }
-#menu.small-screen {
+#cssmenu.small-screen {
   width: 100%;
 }
-#menu.small-screen > ul,
-#menu.small-screen.align-center > ul {
+#cssmenu.small-screen > ul,
+#cssmenu.small-screen.align-center > ul {
   width: 100%;
   text-align: left;
 }
-#menu.small-screen > ul > li,
-#menu.small-screen.align-center > ul > li {
+#cssmenu.small-screen > ul > li,
+#cssmenu.small-screen.align-center > ul > li {
   float: none;
   display: block;
   border-top: 1px solid rgba(100, 100, 100, 0.1);
 }
-#menu.small-screen > ul > li > a {
+#cssmenu.small-screen > ul > li > a {
   padding: 18px 25px;
 }
-#menu.small-screen > ul > li:after,
-#menu.small-screen > ul > li:before {
+#cssmenu.small-screen > ul > li:after,
+#cssmenu.small-screen > ul > li:before {
   display: none;
 }
-#menu.small-screen #menu-button {
+#cssmenu.small-screen #menu-button {
 	display: block;
 	padding: 18px 25px;
 	cursor: pointer;
@@ -117,10 +117,10 @@
 	color: #fd8a17;
 	background: url('images/bg.png');
 }
-#menu.small-screen #menu-button.menu-opened {
+#cssmenu.small-screen #menu-button.menu-opened {
   color: #444444;
 }
-#menu.small-screen #menu-button:after {
+#cssmenu.small-screen #menu-button:after {
   content: "";
   position: absolute;
   right: 25px;
@@ -134,11 +134,11 @@
   width: 18px;
   height: 3px;
 }
-#menu.small-screen #menu-button.menu-opened:after {
+#cssmenu.small-screen #menu-button.menu-opened:after {
   border-top: 2px solid #444444;
   border-bottom: 2px solid #444444;
 }
-#menu.small-screen #menu-button:before {
+#cssmenu.small-screen #menu-button:before {
   content: "";
   position: absolute;
   right: 25px;
@@ -148,10 +148,10 @@
   height: 2px;
   background: #fd8a17;
 }
-#menu.small-screen #menu-button.menu-opened:before {
+#cssmenu.small-screen #menu-button.menu-opened:before {
   background: #444444;
 }
-#menu.small-screen #menu-indicator {
+#cssmenu.small-screen #menu-indicator {
   display: none;
 }
 
