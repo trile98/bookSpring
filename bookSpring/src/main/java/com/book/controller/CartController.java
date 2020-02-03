@@ -60,7 +60,7 @@ public class CartController{
 		return a;
 	}
 	
-//Update info User
+//Update info User and create order
 	@RequestMapping(value = "payment/add-payment", method = RequestMethod.POST)
     public String PaymentUpdateAccount(@SessionAttribute("user") String user, @SessionAttribute("giohang") List<Product> listproduct,@RequestParam int ID, @RequestParam String Name,
     		@RequestParam String Email, @RequestParam String PhoneNumber, @RequestParam String HomeAddress,ModelMap modelMap, HttpSession session) {
@@ -85,15 +85,15 @@ public class CartController{
 								});
 		
 		int subtotal = 0;
-		int ship = 15;
+		int ship = 15000;
 		for(int i=0;i<listproduct.size();i++) {
 			String sql4 = "Insert into OrderDetail values ("+IDs.get(0)+","+listproduct.get(i).getID()+","+listproduct.get(i).getCount()+")";
 			template.execute(sql4);
 			subtotal = subtotal + (listproduct.get(i).getCount() * listproduct.get(i).getPrice());
 		}
 		
-		float tax = 1/20 * subtotal;
-		long total = (long) (ship + tax + subtotal);
+		
+		long total = (long) (ship + subtotal);
 		
 		String sql2 = "Insert into Orders values ("+ID+", GETDATE(),"+total+")"; 
 		template.execute(sql2);
@@ -101,13 +101,28 @@ public class CartController{
 		
 		
 		//remove session when finish payment
-		session.removeAttribute("giohang");
+//		session.removeAttribute("giohang");
 		return ("redirect:/");	
     }
+
 	
-//Load product into Cart
 	
 	
+//Delete row product in cart
+	@RequestMapping(path = "/delete-row-cart")
+	public String deleteRowCart(@RequestParam int deleteID, @SessionAttribute("giohang") List<Product> listproduct ,HttpSession httpSession) {
+		for(int i=0;i<listproduct.size();i++) {
+			if(listproduct.get(i).getID() == deleteID)
+			{
+				listproduct.remove(i);
+			}
+		}
+		httpSession.setAttribute("giohang", giohangs);
+		
+		return "redirect:/Cart-new";
+	}
+	
+//add product into cart	
 	List<Product> giohangs = new ArrayList<Product>();
 	
 	@RequestMapping(path = "/add-to-cart")
