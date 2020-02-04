@@ -46,7 +46,7 @@
 	    
 	    
 		    <div class="product-quantity">
-		      <input type="number" value="${pd.getCount()}" min="1" class="quantity">	    
+		      <input type="number" value="${pd.getCount()}" min="1" class="quantity" readonly="true">	    
 		    </div>
 		    <form action="delete-row-cart" method = POST>	
 	    	<input type="hidden" value="${pd.getID()}" name="deleteID">
