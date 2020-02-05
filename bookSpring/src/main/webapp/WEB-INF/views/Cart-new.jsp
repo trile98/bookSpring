@@ -31,7 +31,8 @@
 	    <label class="product-line-price">Thành tiền</label>
 	  </div>
 	  
-	  <c:forEach items="${giohang}" var="pd">		
+	  <c:forEach items="${giohang}" var="pd">	
+	  
 	  	<div class="product">
 	    <div class="product-image">
 	      <img src="${pd.getImageLink()}">
@@ -43,14 +44,17 @@
 	    
 	    <div class="product-price">${pd.getPrice()}</div>
 	    
-	    <div class="product-quantity">
-	      <input type="number" value="${pd.getCount()}" min="1">	    
-	    </div>
 	    
-	    <div class="product-removal">
-	      	<button class="remove-product">Xóa</button>
-	    </div>
-	    <div class="product-line-price">${pd.getPrice()}</div>
+		    <div class="product-quantity">
+		      <input type="number" value="${pd.getCount()}" min="1" class="quantity" readonly="true">	    
+		    </div>
+		    <form action="delete-row-cart" method = POST>	
+	    	<input type="hidden" value="${pd.getID()}" name="deleteID">
+	    	<div class="product-removal">
+	      		<button type="submit" class="remove-product">Xóa</button>
+	    	</div>
+	    	</form>
+	    <div class="product-line-price">${pd.getPrice() * pd.getCount()}</div>
 	  </div>
 	 
 	  </c:forEach>
@@ -60,10 +64,6 @@
 	    <div class="totals-item">
 	      <label>Tạm tính:</label>
 	      <div class="totals-value" id="cart-subtotal"></div>
-	    </div>
-	    <div class="totals-item">
-	      <label>Thuế GTGT (5%)</label>
-	      <div class="totals-value" id="cart-tax"></div>
 	    </div>
 	    <div class="totals-item">
 	      <label>Ship COD</label>
@@ -90,29 +90,24 @@
  
  <script type="text/javascript">
 	  $( window ).on( "load", function() {
-		  
-		  
-		  	
-			var taxRate = 0.05;
-			var shippingRate = 15.00; 
+		  			
+			var shippingRate = 15000.00; 
 			var fadeTime = 300;
 			var subtotal = 0;
-			   
+				   
 			  /* Sum up row totals */
 			  $('.product').each(function () {
 			    subtotal += parseFloat($(this).children('.product-line-price').text());
 			  });
 			   
 			  /* Calculate totals */
-			  var tax = subtotal * taxRate;
+			 
 			  var shipping = (subtotal > 0 ? shippingRate : 0);
-			  var total = subtotal + tax + shipping;
+			  var total = subtotal + shipping;
 			   
 			  /* Update totals display */
 			  $('.totals-value').fadeOut(fadeTime, function() {
-			    $('#cart-subtotal').html(subtotal.toFixed(2));
-			    $('#cart-tax').html(tax.toFixed(2));
-			    
+			    $('#cart-subtotal').html(subtotal.toFixed(2));			    
 			    $('#cart-shipping').html(shipping.toFixed(2));
 			    $('#cart-total').html(total.toFixed(2));
 			    
