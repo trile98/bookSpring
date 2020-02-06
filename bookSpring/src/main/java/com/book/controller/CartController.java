@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.book.database.AccountDetailMapper;
 import com.book.database.CartMapper;
@@ -41,7 +43,7 @@ import org.springframework.ui.ModelMap;
 @SessionAttributes({"giohang","user"})
 public class CartController{
 
-	
+	List<Product> giohangs = new ArrayList<Product>();
 	
 //Get info User add to form payment
 	@RequestMapping(path = "/payment")
@@ -63,7 +65,7 @@ public class CartController{
 //Update info User and create order
 	@RequestMapping(value = "payment/add-payment", method = RequestMethod.POST)
     public String PaymentUpdateAccount(@SessionAttribute("user") String user, @SessionAttribute("giohang") List<Product> listproduct,@RequestParam int ID, @RequestParam String Name,
-    		@RequestParam String Email, @RequestParam String PhoneNumber, @RequestParam String HomeAddress,ModelMap modelMap, HttpSession session) {
+    		@RequestParam String Email, @RequestParam String PhoneNumber, @RequestParam String HomeAddress,ModelMap modelMap, HttpSession session, SessionStatus status,HttpServletRequest request) {
 		DatabaseJDBC jdbc = new DatabaseJDBC();
 		JdbcTemplate template = jdbc.getTemplate();
 		
@@ -99,9 +101,12 @@ public class CartController{
 		template.execute(sql2);
 		
 		
-		
 		//remove session when finish payment
-//		session.removeAttribute("giohang");
+		giohangs = new ArrayList<Product>();
+		session.setAttribute("giohang", giohangs);
+		
+		session.removeAttribute("giohang");
+		
 		return ("redirect:/");	
     }
 
@@ -123,10 +128,10 @@ public class CartController{
 	}
 	
 //add product into cart	
-	List<Product> giohangs = new ArrayList<Product>();
+	
 	
 	@RequestMapping(path = "/add-to-cart")
-	public String addCartProduct(@RequestParam int ID , ModelMap modelMap, HttpSession httpSession) {	
+	public String addCartProduct(@RequestParam int ID , ModelMap modelMap, HttpSession httpSession,HttpServletRequest request) {	
 		
 		if(httpSession.getAttribute("giohang") == null){
 			DatabaseJDBC jdbc = new DatabaseJDBC();
@@ -152,7 +157,7 @@ public class CartController{
 				list.get(vitri).setCount(soluongmoi);
 			}
 		}
-
+		
 		return ("redirect:/");	
 	}
 	

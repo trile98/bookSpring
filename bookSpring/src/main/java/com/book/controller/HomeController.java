@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.swing.text.html.FormSubmitEvent.MethodType;
 
 import org.springframework.context.annotation.Conditional;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.book.database.AccountMapper;
@@ -30,7 +33,7 @@ import com.book.model.Product;
 import com.book.model.User;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes({"giohang","user"})
 public class HomeController {
 
 	@RequestMapping(path = "/")
@@ -62,7 +65,20 @@ public class HomeController {
 		modelMap.addAttribute("page", tongsopage);
 		return "Home";
 	}
-	
+	@RequestMapping(path = "/Home/{trang}")
+	public String showHomepagenumPost(@PathVariable("trang")int trang,ModelMap modelMap) {
+		List<Product> list = GetListTopProduct(10);
+		int tongsopage ;
+		if(list.size() % 10<5&&list.size() % 10!=0) {
+			tongsopage = (list.size() / 10)+1;
+		}
+		else {tongsopage = list.size() / 10;}
+		
+		modelMap.addAttribute("trang",trang);
+		modelMap.addAttribute("listProduct", list);
+		modelMap.addAttribute("page", tongsopage);
+		return "Home";
+	}
 
 	@RequestMapping(path = "/Intro")
 	public String showIntropage() {
@@ -118,6 +134,15 @@ public class HomeController {
 	public String showContactspage() {
 		return "Contact";
 	}
+	
+	@RequestMapping(path = "/user/signout")
+	public String showSignOut(HttpServletRequest request,HttpSession session, SessionStatus status) {
+		session.setAttribute("user", null);
+		status.setComplete();
+		session.removeAttribute("user");
+		String referer = request.getHeader("referer");
+		return "redirect:"+referer;
+	}
 
 	@RequestMapping(path = "/Detail", method = { RequestMethod.POST,RequestMethod.GET})
 	public String showProductDetail(@RequestParam ("id") int id, ModelMap modelMap) {
@@ -146,12 +171,14 @@ public class HomeController {
 	}
 
 	
-	@RequestMapping(path = "/Order", method = RequestMethod.POST)
-	public String showOrderpage(@RequestParam int ID, ModelMap modelMap) {
-		modelMap.addAttribute("ID", ID);
-
-		return "Order";
-	}
+//	@RequestMapping(path = "/Order", method = RequestMethod.POST)
+//	public String showOrderpage(@RequestParam int ID, ModelMap modelMap) {
+//		modelMap.addAttribute("ID", ID);
+//
+//		return "Order";
+//	}
+	
+	
 	private List<Product> GetListProduct() {
 		DatabaseJDBC jdbc = new DatabaseJDBC();
 		JdbcTemplate template = jdbc.getTemplate();

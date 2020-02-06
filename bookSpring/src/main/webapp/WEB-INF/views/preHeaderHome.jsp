@@ -16,7 +16,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<link href="<c:url value="../resourcesHome/templatemo_style.css"/>" rel="stylesheet" type="text/css">
+
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <!-- Bootstrap core CSS -->
@@ -35,6 +35,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 
 <script type="text/javascript" src="<c:url value="../resourcesHome/js/custom.js"/>"></script>
+<script type="text/javascript" src="<c:url value="../resourcesHome/styles.css"/>"></script>
 
 
 <body style="background-color: #4B4743">
@@ -55,15 +56,21 @@
 				    <input class="form-control mr-sm-2" type="search" name="Search" style="width: 300px" placeholder="Search">
 				    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 				  </form>
-			
-				<a href="../user/signin"><button class="btn peach-gradient" style="float: right">Sign In</button></a>
-				<a href="../user/signup"><button class="btn purple-gradient" style="float: right">Sign Up</button></a>
+				
+				
+				
+				
 				<c:choose>
 				    <c:when test="${empty user}">
-				        <a href="../user/signin"><button class="btn blue-gradient" style="float: right"><i class="fas fa-shopping-cart"></i>Giỏ hàng</button></a>
+				        <a href="../user/signin" class="btn peach-gradient" style="float: right;font-family: Times, 'Times New Roman', serif;">Sign In</a>
+						<a href="../user/signup" class="btn purple-gradient" style="float: right;font-family: Times, 'Times New Roman', serif;">Sign Up</a>
+				        <a href="../user/signin" class="btn blue-gradient" style="float: right;font-family: Times, 'Times New Roman', serif;"><i class="fas fa-shopping-cart"></i>Giỏ hàng</a>
+				    	
 				    </c:when>
 				    <c:otherwise>
-				        <a href="../Cart-new"><button class="btn blue-gradient" style="float: right"><i class="fas fa-shopping-cart"></i>Giỏ hàng</button></a>
+				    	<a href="../user/signout" class="btn purple-gradient" style="font-family: Times, 'Times New Roman', serif;">Sign Out</a>
+				        <a href="../Cart-new" class="btn blue-gradient" style="float: right;font-family: Times, 'Times New Roman', serif;"><i class="fas fa-shopping-cart"></i>Giỏ hàng</a>
+				   		
 				    </c:otherwise>
 				</c:choose>
 				</div>
@@ -76,12 +83,14 @@
 		<div class="col-sm-12 col-md-12 position-relative " data-spy="affix" data-offset-top="197">
 		  <div >
 			  <div id="cssmenu">
-			   <ul>
-			   <li><a href="../Home/1" class="current">Trang chủ</a></li>
+			   <ul>            
+			            <li><a href="Home/1" class="current">Trang chủ</a></li>
 			            <li><a href="../Intro">Giới thiệu</a></li>
 			            <li><a href="../Books/1?Search=">Sách</a></li>            
 			            <li><a href="../NewBooks/1">Sách mới</a></li>  
-			            <li><a href="../Contact">Liên hệ</a></li>	</ul>
+			            <li><a href="../Contact">Liên hệ</a></li>	 
+			     
+			     </ul>
 			    </div> <!-- end of menu -->
 
 		</div>

@@ -59,7 +59,7 @@
 	 
 	  </c:forEach>
 	  
- <form action="payment/add-payment" method="post">
+ <form action="../bookSpring/payment" method="post">
 	  <div class="totals">
 	    <div class="totals-item">
 	      <label>Tạm tính:</label>
