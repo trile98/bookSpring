@@ -54,7 +54,7 @@
         <!-- Content -->
         <h5 class="font-weight-bold text-uppercase mb-4">Welcome</h5>
         <p style="font-family: tahoma">Hãy đọc một giờ mỗi ngày về lĩnh vực bạn đã lựa chọn. Điều này tương đương khoảng một cuốn sách mỗi tuần, năm mươi cuốn sách mỗi năm, và sẽ đảm bảo cho thành công của bạn.</p>
-        <i  style="font-family: Times, "Times New Roman", serif;">Đây là một trang web cung cấp các loại sách mới nhất và thường xuyên ưu đãi dành cho khách hàng </i>
+        <i  style="font-family: Times, 'Times New Roman', serif;">Đây là một trang web cung cấp các loại sách mới nhất và thường xuyên ưu đãi dành cho khách hàng </i>
 
       </div>
       <!-- Grid column -->

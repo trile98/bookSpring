@@ -184,20 +184,30 @@
   		</div>
   		
   	</div>
-  	<c:if test="${page}>1">
+  	<c:if test="${page>1}">
   	<div class="row">
   	<div class="col-sm-4"></div>
   	<div class="col-sm-8 ">
   		<ul class="pagination pagination-sm d-flex flex-row flex-wrap my-flex-container"  >
   		<c:forEach var="i" begin="1" end="${page}">
   			<c:choose>
+  				<c:when test = "${i<9 && trang==i}">
+		            <li class=" page-item p-2 my-flex-item">
+		            <a class="paging-item page-link mr-3 bg-danger text-white" href="${i}?Search=${Search}">${i}</a>
+		            </li>
+		         </c:when>
+		         <c:when test = "${i>=9 && trang==i}">
+		            <li class=" page-item p-2 my-flex-item">
+		            <a class="paging-item page-link mr-2 bg-danger text-white" href="${i}?Search=${Search}">${i}</a>
+		            </li>
+		         </c:when>
 		     	<c:when test = "${i<9}">
 		            <li class=" page-item p-2 my-flex-item">
-		            <a class="paging-item page-link mr-3 bg-info text-white" href="${i}">${i}</a>
+		            <a class="paging-item page-link mr-3 bg-info text-white" href="${i}?Search=${Search}">${i}</a>
 		            </li>
 		         </c:when>
 		         <c:otherwise>
-		            <li class="page-item  p-2 my-flex-item"><a class="paging-item page-link mr-2 bg-info text-white" href="${i}">${i}</a></li>
+		            <li class="page-item  p-2 my-flex-item"><a class="paging-item page-link mr-2 bg-info text-white" href="${i}?Search=${Search}">${i}</a></li>
 		         </c:otherwise>
 		      </c:choose>
 		    

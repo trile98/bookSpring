@@ -53,14 +53,17 @@
 				    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 				  </form>
 			
-				<a href="user/signin"><button class="btn peach-gradient" style="float: right">Sign In</button></a>
-				<a href="user/signup"><button class="btn purple-gradient" style="float: right">Sign Up</button></a>
 				<c:choose>
 				    <c:when test="${empty user}">
-				        <a href="user/signin"><button class="btn blue-gradient" style="float: right"><i class="fas fa-shopping-cart"></i>Giỏ hàng</button></a>
+				        <a href="user/signin" class="btn peach-gradient" style="float: right;font-family: Times, 'Times New Roman', serif;">Sign In</a>
+						<a href="user/signup" class="btn purple-gradient" style="float: right;font-family: Times, 'Times New Roman', serif;">Sign Up</a>
+				        <a href="user/signin" class="btn blue-gradient" style="float: right;font-family: Times, 'Times New Roman', serif;"><i class="fas fa-shopping-cart"></i>Giỏ hàng</a>
+				    	
 				    </c:when>
 				    <c:otherwise>
-				        <a href="Cart-new"><button class="btn blue-gradient" style="float: right"><i class="fas fa-shopping-cart"></i>Giỏ hàng</button></a>
+				    	<a href="user/signout" class="btn purple-gradient" style="font-family: Times, 'Times New Roman', serif;">Sign Out</a>
+				        <a href="Cart-new" class="btn blue-gradient" style="float: right;font-family: Times, 'Times New Roman', serif;"><i class="fas fa-shopping-cart"></i>Giỏ hàng</a>
+				   		
 				    </c:otherwise>
 				</c:choose>
 				
