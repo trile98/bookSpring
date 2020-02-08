@@ -1,1 +1,1 @@
-web: java -war target/bookSpring.war
+web: java -jar target/dependency/webapp-runner.jar target/bookSpring.war
