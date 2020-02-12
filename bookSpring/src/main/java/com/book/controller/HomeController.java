@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,20 +37,10 @@ import com.book.model.User;
 @SessionAttributes({"giohang","user"})
 public class HomeController {
 
+	@RequestMapping("/")
+	public String showHomepage(ModelMap modelMap) {
 
-	@RequestMapping(path = "/", method = { RequestMethod.POST,RequestMethod.GET})
-	public String showHomepage(@RequestParam(value="trang", required = false)int trang ,ModelMap modelMap) {
-		List<Product> list = GetListTopProduct(10);
-		int tongsopage ;
-		if(list.size() % 10<5&&list.size() % 10!=0) {
-			tongsopage = (list.size() / 10)+1;
-		}
-		else {tongsopage = list.size() / 10;}
-		
-		
-		modelMap.addAttribute("listProduct", list);
-		modelMap.addAttribute("page", tongsopage);
-		return "index";
+		return "redirect:Home/1";
 	}
 	@RequestMapping(path = "/Home/{trang}")
 	public String showHomepagenum(@PathVariable("trang")int trang,ModelMap modelMap) {
