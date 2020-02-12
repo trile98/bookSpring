@@ -102,21 +102,47 @@ public class CartController{
 		
 		
 		//remove session when finish payment
-		giohangs = new ArrayList<Product>();
+		giohangs.clear();
 		session.setAttribute("giohang", giohangs);
+		//session.removeAttribute("giohang");
 		
-		session.removeAttribute("giohang");
-		
-		return ("redirect:/");	
+		return ("redirect:/Home/1");	
     }
 
-	
+//Minus quantity 
+	@RequestMapping(path = "/minus-one")
+	public String MinusQuantity(@RequestParam int IDminus, @SessionAttribute("giohang") List<Product> listproduct ,HttpSession httpSession) {
+		for(int i=0;i<listproduct.size();i++) {
+			if(listproduct.get(i).getID() == IDminus && listproduct.get(i).getCount() > 1)
+			{
+				int count = listproduct.get(i).getCount()-1;
+				listproduct.get(i).setCount(count);
+			}
+		}
+		httpSession.setAttribute("giohang", giohangs);
+		
+		return "redirect:/Cart-new";
+	}
+//Plus quantity 
+	@RequestMapping(path = "/plus-one")
+	public String PlusQuantity(@RequestParam int IDplus, @SessionAttribute("giohang") List<Product> listproduct ,HttpSession httpSession) {
+		for(int i=0;i<listproduct.size();i++) {
+			if(listproduct.get(i).getID() == IDplus)
+			{
+				int count = listproduct.get(i).getCount()+1;
+				listproduct.get(i).setCount(count);
+			}
+		}
+		httpSession.setAttribute("giohang", giohangs);
+			
+		return "redirect:/Cart-new";
+	}	
 	
 	
 //Delete row product in cart
 	@RequestMapping(path = "/delete-row-cart")
 	public String deleteRowCart(@RequestParam int deleteID, @SessionAttribute("giohang") List<Product> listproduct ,HttpSession httpSession) {
-		for(int i=0;i<listproduct.size();i++) {
+		for(int i=0;i<listproduct.size();i++) {			
 			if(listproduct.get(i).getID() == deleteID)
 			{
 				listproduct.remove(i);
@@ -158,7 +184,7 @@ public class CartController{
 			}
 		}
 		
-		return ("redirect:/");	
+		return ("redirect:/Home/1");	
 	}
 	
 	private int KiemTraTonTai(int ID, HttpSession httpSession)

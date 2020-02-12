@@ -55,7 +55,7 @@ public class UserController {
 			switch(CompareResult) {
 			case 1:
 				model.addAttribute("user",user);
-				return ("redirect:/");
+				return ("redirect:/Home/1");
 			case 2:
 				model.addAttribute("errorMes", "Incorrect account type!");
 				return ("UserLoginFail");

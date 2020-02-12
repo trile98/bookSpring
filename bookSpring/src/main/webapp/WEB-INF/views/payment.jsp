@@ -60,7 +60,7 @@
           </div>
           <div class="form-group">
             <label class="control-label">Họ tên</label>
-            <input name="Name" maxlength="100" type="text" required="required" class="form-control" value = "${acdt[0].getName()}" />
+            <input name="Name" maxlength="100" readonly="true" type="text" required="required" class="form-control" value = "${acdt[0].getName()}" />
 			
         
           </div>

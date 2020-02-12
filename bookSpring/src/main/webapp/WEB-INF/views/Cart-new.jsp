@@ -45,21 +45,32 @@
 	    <div class="product-price">${pd.getPrice()}</div>
 	    
 	    
-		    <div class="product-quantity">
-		      <input type="number" value="${pd.getCount()}" min="1" class="quantity" readonly="true">	    
-		    </div>
-		    <form action="delete-row-cart" method = POST>	
+ 		<div class="product-quantity quantity-block">
+ 			<form action="minus-one" method = POST>
+ 				<input type="hidden" value="${pd.getID()}" name="IDminus" style="visibility: hidden;">	
+	      		<button type="submit" style="width: 40px">-</button>
+	   		</form>
+			<input type="number" style="text-align: center;" value="${pd.getCount()}" min="1" class="quantity" readonly="true">
+			<form action="plus-one" method = POST>
+ 				<input type="hidden" value="${pd.getID()}" name="IDplus" style="visibility: hidden;">	
+	      		<button type="submit" style="width: 40px">+</button>
+	   		</form>	    
+ 		</div>
+ 		
+ 		
+ 		
+		<form action="delete-row-cart" method = POST>	
 	    	<input type="hidden" value="${pd.getID()}" name="deleteID">
 	    	<div class="product-removal">
 	      		<button type="submit" class="remove-product">Xóa</button>
 	    	</div>
-	    	</form>
+	   	</form>
 	    <div class="product-line-price">${pd.getPrice() * pd.getCount()}</div>
 	  </div>
 	 
 	  </c:forEach>
 	  
- <form action="../bookSpring/payment" method="post">
+ <form action="/payment" method="post">
 	  <div class="totals">
 	    <div class="totals-item">
 	      <label>Tạm tính:</label>
@@ -85,7 +96,7 @@
 	  
        
        
-      <button class="checkout" type="submit"><a href="../bookSpring/payment" style="text-decoration: none;">Tiến hành đặt hàng</a></button>
+      <button class="checkout" type="submit">Tiến hành đặt hàng</button>
  </form>
  
  <script type="text/javascript">
