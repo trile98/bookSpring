@@ -37,19 +37,10 @@ import com.book.model.User;
 public class HomeController {
 
 
-	@RequestMapping(path = "/", method = { RequestMethod.POST,RequestMethod.GET})
-	public String showHomepage(@RequestParam(value="trang", required = false)int trang ,ModelMap modelMap) {
-		List<Product> list = GetListTopProduct(10);
-		int tongsopage ;
-		if(list.size() % 10<5&&list.size() % 10!=0) {
-			tongsopage = (list.size() / 10)+1;
-		}
-		else {tongsopage = list.size() / 10;}
+	@RequestMapping(path = "/")
+	public String showHomepage(ModelMap modelMap) {
 		
-		
-		modelMap.addAttribute("listProduct", list);
-		modelMap.addAttribute("page", tongsopage);
-		return "index";
+		return ("redirect:/Home/1");
 	}
 	@RequestMapping(path = "/Home/{trang}")
 	public String showHomepagenum(@PathVariable("trang")int trang,ModelMap modelMap) {

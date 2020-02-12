@@ -158,7 +158,7 @@ public class CartController{
 			}
 		}
 		
-		return ("redirect:/");	
+		return ("redirect:/Home/1");	
 	}
 	
 	private int KiemTraTonTai(int ID, HttpSession httpSession)
