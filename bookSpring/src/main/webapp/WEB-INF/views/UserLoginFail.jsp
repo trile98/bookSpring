@@ -81,11 +81,11 @@
 				<p>${errorMes}</p>
 			</div>
 			<div class="nk-navigation nk-lg-ic">
-				<a href="/bookSpring/user/signin"><i
+				<a href="/user/signin"><i
 					class="notika-icon notika-left-arrow"></i> <span>Login again</span></a>
 			</div>
 			<div class="nk-navigation nk-lg-ic">
-				<a href="/bookSpring"><i class="notika-icon notika-left-arrow"></i>
+				<a href="/"><i class="notika-icon notika-left-arrow"></i>
 					<span>Back to Home</span></a>
 			</div>
 		</div>

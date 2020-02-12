@@ -102,7 +102,7 @@
 					<div class="mobile-menu">
 						<nav id="dropdown">
 							<ul class="mobile-menu-nav">
-								<li><a href="/bookSpring/user/home">Home</a></li>
+								<li><a href="/user/home">Home</a></li>
 
 							</ul>
 						</nav>
@@ -118,7 +118,7 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-						<li class="active"><a href="/bookSpring/user/home"><i
+						<li class="active"><a href="/user/home"><i
 								class="notika-icon notika-house"></i> Home</a></li>
 
 						<li><a data-toggle="tab" href="#Charts"><i
@@ -132,7 +132,7 @@
 						<li><a data-toggle="tab" href="#Page"><i
 								class="notika-icon notika-support"></i> Pages</a></li>
 																
-								<li><a href="/bookSpring" role="button">Sign Out</a></li>
+								<li><a href="/" role="button">Sign Out</a></li>
 					</ul>
 
 				</div>

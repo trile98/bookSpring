@@ -50,7 +50,7 @@
     </div>
   </div>
   
-  <form action="/bookSpring/payment/add-payment" method="POST" class="col-sm-12 col-md-12">
+  <form action="/payment/add-payment" method="POST" class="col-sm-12 col-md-12">
     <div class="row setup-content" id="step-1">
       <div class="col-xs-6 col-md-offset-3">
         <div class="col-md-12">

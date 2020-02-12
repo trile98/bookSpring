@@ -65,7 +65,7 @@
 		        <p>${errorMes}</p>
 	        </div>
             <div class="nk-navigation nk-lg-ic">
-                <a href="/bookSpring/admin" ><i class="notika-icon notika-left-arrow"></i> <span>Login again</span></a>
+                <a href="/admin" ><i class="notika-icon notika-left-arrow"></i> <span>Login again</span></a>
                 
             </div>
        	</div>

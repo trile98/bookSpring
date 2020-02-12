@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: Admin
 Build-Jdk: 1.8.0_231
-=======
-Built-By: dell
-Build-Jdk: 13.0.2
->>>>>>> c6ab5ad4cf184087aef612bd7bc100af72c9ca81
 Created-By: Maven Integration for Eclipse
 
