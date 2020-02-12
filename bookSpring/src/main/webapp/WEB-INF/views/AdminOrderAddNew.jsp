@@ -81,9 +81,9 @@
                     <div class="mobile-menu">
                         <nav id="dropdown">
                             <ul class="mobile-menu-nav">
-                                <li><a  href="/bookSpring/admin/home">Home</a></li>
-								<li><a  href="/bookSpring/admin/order">"Order" Table</a></li>
-								<li><a  href="/bookSpring/admin/order-detail">"Order Detail" Table</a></li>
+                                <li><a  href="/admin/home">Home</a></li>
+								<li><a  href="/admin/order">"Order" Table</a></li>
+								<li><a  href="/admin/order-detail">"Order Detail" Table</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -98,11 +98,11 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                        <li ><a href="/bookSpring/admin/home"><i class="notika-icon notika-house"></i> Home</a>
+                        <li ><a href="/admin/home"><i class="notika-icon notika-house"></i> Home</a>
                         </li>
-                        <li class="active"><a  href="/bookSpring/admin/order"> "Order" Table</a>
+                        <li class="active"><a  href="/admin/order"> "Order" Table</a>
                         </li>
-                        <li><a  href="/bookSpring/admin/order-detail"> "Order Detail" Table</a>
+                        <li><a  href="/admin/order-detail"> "Order Detail" Table</a>
                         </li>
                         <li><a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> Charts</a>
                         </li>
@@ -124,7 +124,7 @@
 	<div class="container">
 			<div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <form:form action="/bookSpring/admin/order/submit-new" method="POST">
+                <form:form action="/admin/order/submit-new" method="POST">
                     <div class="form-example-wrap mg-t-30">
                         
                         <div class="form-example-int form-horizental">

@@ -95,9 +95,9 @@
                     <div class="mobile-menu">
                         <nav id="dropdown">
                             <ul class="mobile-menu-nav">
-                                <li><a  href="/bookSpring/admin/home">Home</a></li>
-								<li><a  href="/bookSpring/admin/order">"Order" Table</a></li>
-								<li><a  href="/bookSpring/admin/order-detail">"Order Detail" Table</a></li>
+                                <li><a  href="/admin/home">Home</a></li>
+								<li><a  href="/admin/order">"Order" Table</a></li>
+								<li><a  href="/admin/order-detail">"Order Detail" Table</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -112,11 +112,11 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                        <li ><a href="/bookSpring/admin/home"><i class="notika-icon notika-house"></i> Home</a>
+                        <li ><a href="/admin/home"><i class="notika-icon notika-house"></i> Home</a>
                         </li>
-                        <li class="active"><a  href="/bookSpring/admin/order"> "Order" Table</a>
+                        <li class="active"><a  href="/admin/order"> "Order" Table</a>
                         </li>
-                        <li><a  href="/bookSpring/admin/order-detail"> "Order Detail" Table</a>
+                        <li><a  href="/admin/order-detail"> "Order Detail" Table</a>
                         </li>
                         <li><a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> Charts</a>
                         </li>
@@ -144,7 +144,7 @@
                     <div class="data-table-list">
                         <div class="basic-tb-hd">
                             <h2>Order</h2>
-                            <a href="/bookSpring/admin/order/addNew" class="btn btn-success notika-btn-success waves-effect" >Add New</a>
+                            <a href="/admin/order/addNew" class="btn btn-success notika-btn-success waves-effect" >Add New</a>
                         </div>
                         <div class="table-responsive">
                             <table id="data-table-basic" class="table table-striped">
@@ -182,7 +182,7 @@
 	<div class="modal animated rubberBand" id="EditOrderModal" role="dialog">
            <div class="modal-dialog modals-default">
                <div class="modal-content">
-                   <form:form id="EditOrderForm" action="/bookSpring/admin/order/edit/" method="POST">
+                   <form:form id="EditOrderForm" action="/admin/order/edit/" method="POST">
 	                   <div class="modal-header">
 	                       <button type="button" class="close" data-dismiss="modal">&times;</button>
 	                   </div>
@@ -276,7 +276,7 @@
 	                       	Do you want to delete this record???
 	                   </div>
 	                   <div class="modal-footer">
-		                   <form:form id="OrderDeleteForm" action="/bookSpring/admin/order/delete/" method="POST">
+		                   <form:form id="OrderDeleteForm" action="/admin/order/delete/" method="POST">
 		                       <button type="submit" class="btn btn-default">Yes</button>
 		                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		                   </form:form>

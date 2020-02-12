@@ -81,7 +81,7 @@
 				<font color="white">User Login</font>
 			</h1>
 			<form:form id="LoginForm" class="nk-form"
-				action="/bookSpring/user/signin/error" method="POST">
+				action="/user/signin/error" method="POST">
 
 				<div class="input-group">
 					<span class="input-group-addon nk-ic-st-pro"><i

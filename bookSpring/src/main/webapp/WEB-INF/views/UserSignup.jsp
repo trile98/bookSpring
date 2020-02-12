@@ -81,7 +81,7 @@
 				<font color="white">Sign Up</font>
 			</h1>
 			<form:form id="LoginForm" class="nk-form"
-				action="/bookSpring/user/signup/error" method="POST">
+				action="/user/signup/error" method="POST">
 
 				<div class="input-group">
 					<span class="input-group-addon nk-ic-st-pro"></span>

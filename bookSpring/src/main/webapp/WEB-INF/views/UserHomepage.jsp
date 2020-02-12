@@ -8,6 +8,6 @@
 </head>
 <body>
 <h1>THIS IS A USER HOME PAGE</h1>
-<a class="btn btn-primary" href="/bookSpring" role="button">Sign Out</a>
+<a class="btn btn-primary" href="/" role="button">Sign Out</a>
 </body>
 </html>
