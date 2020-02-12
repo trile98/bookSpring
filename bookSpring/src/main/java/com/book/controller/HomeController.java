@@ -36,8 +36,9 @@ import com.book.model.User;
 @SessionAttributes({"giohang","user"})
 public class HomeController {
 
-	@RequestMapping(path = "/")
-	public String showHomepage(ModelMap modelMap) {
+
+	@RequestMapping(path = "/", method = { RequestMethod.POST,RequestMethod.GET})
+	public String showHomepage(@RequestParam(value="trang", required = false)int trang ,ModelMap modelMap) {
 		List<Product> list = GetListTopProduct(10);
 		int tongsopage ;
 		if(list.size() % 10<5&&list.size() % 10!=0) {
@@ -50,23 +51,8 @@ public class HomeController {
 		modelMap.addAttribute("page", tongsopage);
 		return "index";
 	}
-	
-	@RequestMapping(path = "/Home/{trang}",method = RequestMethod.GET)
-	public String showHomepagenum(@PathVariable("trang")int trang,ModelMap modelMap) {
-		List<Product> list = GetListTopProduct(10);
-		int tongsopage ;
-		if(list.size() % 10<5&&list.size() % 10!=0) {
-			tongsopage = (list.size() / 10)+1;
-		}
-		else {tongsopage = list.size() / 10;}
-		
-		modelMap.addAttribute("trang",trang);
-		modelMap.addAttribute("listProduct", list);
-		modelMap.addAttribute("page", tongsopage);
-		return "Home";
-	}
 	@RequestMapping(path = "/Home/{trang}")
-	public String showHomepagenumPost(@PathVariable("trang")int trang,ModelMap modelMap) {
+	public String showHomepagenum(@PathVariable("trang")int trang,ModelMap modelMap) {
 		List<Product> list = GetListTopProduct(10);
 		int tongsopage ;
 		if(list.size() % 10<5&&list.size() % 10!=0) {

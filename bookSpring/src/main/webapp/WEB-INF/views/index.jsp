@@ -43,8 +43,6 @@
 <jsp:include page="HeaderHome.jsp" /> 
 <div class="container" style="background-color: #1C1C1B">
 
-    
-  	
   	<div class="row" style="padding:10px 0px;">
   		<div class="col-sm-4 col-md-4 mucluc" style="padding:0px 20px;font-size: 10px;font-family: cursive;">
   			<div style="background: black;padding-left:10px">

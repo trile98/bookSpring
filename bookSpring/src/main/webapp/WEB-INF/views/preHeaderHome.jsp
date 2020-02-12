@@ -84,7 +84,7 @@
 		  <div >
 			  <div id="cssmenu">
 			   <ul>            
-			            <li><a href="Home/1" class="current">Trang chủ</a></li>
+			            <li><a href="../Home/1" class="current">Trang chủ</a></li>
 			            <li><a href="../Intro">Giới thiệu</a></li>
 			            <li><a href="../Books/1?Search=">Sách</a></li>            
 			            <li><a href="../NewBooks/1">Sách mới</a></li>  
