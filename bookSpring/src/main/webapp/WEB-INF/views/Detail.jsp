@@ -95,7 +95,7 @@
 					        <a href="user/signin"><button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button></a>
 					    </c:when>
 					    <c:otherwise>
-					    	<form action="add-to-cart" method="post">
+					    	<form action="../add-to-cart" method="post">
 				      	 		<input type="hidden" id="hidden" name="ID" value="${letter.getID()}">
 				      	 		<button type="submit" class="btn btn-light-blue btn-md">Đặt hàng</button>
 				      		</form>

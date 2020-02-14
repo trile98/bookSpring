@@ -55,9 +55,6 @@ public class AdminController {
 					model.addAttribute("errorMes", "Your account is not admin");
 					return ("AdminLoginFail");
 				case 3:
-					model.addAttribute("errorMes", "Your password is wrong");
-					return ("AdminLoginFail");
-				case 4:
 					model.addAttribute("errorMes", "Your account is not exist");
 					return ("AdminLoginFail");
 			}
@@ -339,29 +336,28 @@ public class AdminController {
 		DatabaseJDBC jdbc = new DatabaseJDBC();
 		JdbcTemplate template = jdbc.getTemplate();
 		
-		String sql = "Select Username, Pass, Auth from Users";
-		List <Account> accounts = template.query(sql, new AccountMapper());
+		String sql = "Select Auth from Users where Username = '"+name+"' and Pass = '"+pass+"'";
+		List <Integer> Auths = template.query(sql, new RowMapper<Integer>(){
+												            public Integer mapRow(ResultSet rs, int rowNum) 
+												                    throws SQLException {
+												return (Integer)rs.getInt("Auth");
+												}
+												});
 		
-		for(Account acc : accounts) {
-			if(acc.getUsername().equals(name)) {
-				if(acc.getPassword().equals(pass)) {
-					if(acc.getAuth()==1) {
-						return 1;
-					}
-					else {
-//						is not admin
-						return 2;
-					}
-				}
-				else {
-//					wrong password
-					return 3;
-				}
-			}
+		if(Auths.isEmpty()) {
+			//account not exist
+			return 3;
 		}
 		
-//		account not exist
-		return 4;
+		else {
+			if(Auths.get(0)==1)
+				return 1;
+			else{
+//				is not admin
+				return 2;
+			}
+				
+		}
 	}
 	
 	
