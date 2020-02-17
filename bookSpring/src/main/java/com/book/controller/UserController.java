@@ -30,10 +30,11 @@ import com.book.model.OrderProduct;
 @Controller
 @SessionAttributes("user")
 public class UserController {
+	private boolean signinCheck = false;
 	String user;
 	@RequestMapping(value = "/user/signin")
 	public ModelAndView showLogin(ModelMap model) {
-		
+
 		return new ModelAndView("UserLogin", "command", new Account());
 	}
 
@@ -54,18 +55,17 @@ public class UserController {
 
 			switch(CompareResult) {
 			case 1:
+				signinCheck = true;
 				model.addAttribute("user",user);
 				return ("redirect:/Home/1");
 			case 2:
-				model.addAttribute("errorMes", "Incorrect account type!");
+				model.addAttribute("errorMes", "Incorrect Authority!");
 				return ("UserLoginFail");
 			case 3:
-				model.addAttribute("errorMes", "Incorrect Username/Password!");
-				return ("UserLoginFail");
-			case 4:
-				model.addAttribute("errorMes", "Incorrect Username/Password!");
+				model.addAttribute("errorMes", "Your account does not exist!");
 				return ("UserLoginFail");
 			}
+			model.addAttribute("errorMes", "Incorrect Username/Password!");
 			return ("UserLoginFail");
 		}
 		else {
@@ -96,17 +96,14 @@ public class UserController {
 			{
 				DatabaseJDBC jdbc = new DatabaseJDBC();
 				JdbcTemplate template = jdbc.getTemplate();
-				
+
 				String sql = "Insert into Users values ('"+name+"', '"+homeAddress+"', '"+email+"', '"+phoneNumber+"', '"+username+"', '"+password+"', 2)";
 				template.execute(sql);
-				
+
 				return ("redirect:/user/signin");}
-				
+
 			case 2:
-				model.addAttribute("errorMes", "Email already used!");
-				return ("UserSignupFail");
-			case 3:
-				model.addAttribute("errorMes", "Username already used!");
+				model.addAttribute("errorMes", "Username/Email already used!");
 				return ("UserSignupFail");
 			}
 			return ("UserSignupFail");
@@ -124,29 +121,33 @@ public class UserController {
 	}
 
 
-	private int compareAccountWithDBSignIn(String name, String pass) {
+	private int compareAccountWithDBSignIn(String username, String password) {
 		DatabaseJDBC jdbc = new DatabaseJDBC();
 		JdbcTemplate template = jdbc.getTemplate();
 
-		String sql = "Select Username, Pass, Auth from Users";
-		List <Account> accounts = template.query(sql, new AccountMapper());
-
-		for(Account acc : accounts) {
-			if(acc.getUsername().equals(name)) {
-				if(acc.getPassword().equals(pass)) {
-					if(acc.getAuth()==2) {
-						user=name;
-						return 1;
-					}
-					//is not user
-					else return 2;
-				}
-				//wrong password
-				else return 3;
+		String sql = "Select Auth from Users where Username = '"+username+"' and Pass = '"+password+"'";
+		List <Integer> Auths = template.query(sql, new RowMapper<Integer>(){
+			public Integer mapRow(ResultSet rs, int rowNum) 
+					throws SQLException {
+				return (Integer)rs.getInt("Auth");
 			}
+		});
+
+		if(Auths.isEmpty()) {
+			//account does not exist
+			return 3;
 		}
 
-		return 4;
+		else {
+			if(Auths.get(0)==2)
+				//sign in success
+				return 1;
+			else{
+				//account is not User
+				return 2;
+			}
+
+		}
 	}
 
 
@@ -154,21 +155,22 @@ public class UserController {
 		DatabaseJDBC jdbc = new DatabaseJDBC();
 		JdbcTemplate template = jdbc.getTemplate();
 
-		String sql = "Select Username, Pass, Name, HomeAddress, Email, PhoneNumber, Auth from Users";
-		List <Account> accounts = template.query(sql, new AccountMapperFull());
-
-		for(Account acc : accounts) {
-			if(!acc.getUsername().equals(username)){
-				if(!acc.getEmail().equals(email)){
-					return 1;
-				}
-				//same email
-				else return 2;
+		String sql = "Select Auth from Users where Username = '"+username+"' or Email = '"+email+"'";
+		List <Integer> Auths = template.query(sql, new RowMapper<Integer>(){
+			public Integer mapRow(ResultSet rs, int rowNum) 
+					throws SQLException {
+				return (Integer)rs.getInt("Auth");
 			}
-			//same username
-			else return 3;
+		});
+
+		if(Auths.isEmpty()) {
+			//sign up success
+			return 1;
 		}
-		return 3;
+
+		else
+			//sign up fail
+			return 2;
 	}
 
 }
